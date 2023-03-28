@@ -1,6 +1,9 @@
 # 1) Gegevens inlezen en manipuleren 
-# Herinner om eerst de working directory aan te passen met setwd(dir)
-airbnb <- read.csv2(paste(getwd(), "airbnb.csv", sep = "/"), sep="", stringsAsFactors=TRUE)
+# Herinner om eerst de working directory aan te passen
+#airbnb <- read.csv2("~/2e Bachelor/stat404/stat_project_2023/airbnb.csv", sep="", stringsAsFactors=TRUE)
+#airbnb <- read.csv2("", sep="", stringsAsFactors=TRUE)
+#airbnb <- read.csv2("", sep="", stringsAsFactors=TRUE)
+
 range = max(airbnb$attr)-min(airbnb$attr)
 range2 = max(airbnb$rest)-min(airbnb$rest)
 airbnb$attr = 1 + 9*((airbnb$attr - min(airbnb$attr)) /range)
@@ -13,4 +16,5 @@ attach(airbnb)
 
 # 2) Gegevens verkennnen
 summary(airbnb)
-hist(log(realSum)
+hist(log(realSum))
+     #de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
