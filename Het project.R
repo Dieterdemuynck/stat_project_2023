@@ -15,6 +15,9 @@ airbnb$host = factor(airbnb$host, levels = c(0,1,2), labels = c(" enige beschikb
 attach(airbnb)
 
 # 2) Gegevens verkennnen
+
+###histogram plotten met daarboven een expliciete normale, lognormale en exponentiele verdeling erbij
+
 summary(airbnb)
 hist(log(realSum))
      #de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
