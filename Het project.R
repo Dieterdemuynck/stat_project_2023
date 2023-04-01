@@ -49,3 +49,25 @@ range(rest)
 range(rest)[2]- range(rest)[1]    #de rest ligt per constructie tussen 1 en 10
 cov(realSum, rest) #er is duidelijk een positieve samenhang tussen de prijs en de restaurantscore
 
+# 9: host
+# Kwalitatief, ordinaal
+# Meeste verblijven hebben een gastheer die maar één woning ter beschikking heeft
+table(host)
+x = barplot(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", names.arg = c("1", "2-4", ">4"), col = c("snow2", "snow3", "snow4"), ylim = c(0,max(table(host))*1.15), space = 0)
+text(x, table(host)+30, labels = as.character(y))
+pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", labels = c("1", "2-4", ">4"))
+
+# 10: cleanliness
+# Kwalitatief, ordinaal (TODO: misschien toch kwantitatief?)
+# Zeer linksscheef, meer dan de helft geeft "10"
+# Exponentieel verdeeld?
+table(cleanliness)
+hist(cleanliness, col = c("snow2", "snow3"))
+
+# 11: satistfaction
+# Kwantitatief, discreet (misschien toch continu?)
+# Opnieuw zeer linksscheef
+# Exponentieel verdeeld?
+hist(satisfaction, breaks = 1:10, col = c("snow2", "snow3"))
+hist(airbnb[satisfaction>=7,11], breaks = seq(7, 10, 0.2), col = c("snow2", "snow3"), main = "Histogram van de satisfaction scores tussen 7 en 10")
+table(floor(satisfaction))
