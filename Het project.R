@@ -18,7 +18,40 @@ attach(airbnb)
 
 summary(airbnb)
 hist(log(realSum))
-     #de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
+#de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
+#realSum is kwantitatief en continu
+summary(realSum)
+mean(realSum)
+median(realSum)
+sd(realSum)
+range(realSum)
+plot(realSum)#één zeer duidelijke uitschieter
+boxplot(realSum)
+hist(realSum)#zeer rechtsscheef
+hist(log(realSum))#iets "normaler" verdeeld
+
+#room is een kwalitatieve variabele
+summary(room)
+table(room)#zeer weinig gedeelde kamers
+table(room)/length(room)
+barplot(table(room))
+barplot(table(room)/length(room))
+
+#ordinale kwalitatieve gegevens
+summary(capacity)
+table(capacity)
+table(capacity)/length(capacity)
+barplot(table(capacity))
+barplot(table(capacity)/length(capacity))
+
+#ordinale kwalitatieve gegevens
+summary(bedrooms)
+table(bedrooms)
+table(bedrooms)/length(bedrooms)
+barplot(table(bedrooms))
+barplot(table(bedrooms)/length(bedrooms))
+
+
 #2b) 5 tem 8
 ##5: Kwantitatief en continue variabele (positief)
 hist(dist) #duidelijk rechtscheef 
