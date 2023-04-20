@@ -1,6 +1,6 @@
 # 1) Gegevens inlezen en manipuleren 
 
-airbnb <- read.csv2("airbnb.csv", sep="", stringsAsFactors=TRUE)
+airbnb <- read.csv2("~/2e Bachelor/stat404/stat_project_2023/airbnb.csv", sep="", stringsAsFactors=TRUE)
 range_attr  = max(airbnb$attr)-min(airbnb$attr)
 range_rest  = max(airbnb$rest)-min(airbnb$rest)
 airbnb$attr = 1 + 9*((airbnb$attr - min(airbnb$attr)) / range_attr)
@@ -25,7 +25,7 @@ mean(realSum)
 median(realSum)
 sd(realSum)
 range(realSum)
-plot(realSum)#één zeer duidelijke uitschieter
+plot(realSum)#??n zeer duidelijke uitschieter
 boxplot(realSum)
 hist(realSum)#zeer rechtsscheef
 hist(log(realSum))#iets "normaler" verdeeld
@@ -40,6 +40,7 @@ barplot(table(room)/length(room))
 #ordinale kwalitatieve gegevens
 summary(capacity)
 table(capacity)
+hist(capacity)
 table(capacity)/length(capacity)
 barplot(table(capacity))
 barplot(table(capacity)/length(capacity))
@@ -104,3 +105,13 @@ hist(cleanliness, col = c("snow2", "snow3"))
 hist(satisfaction, breaks = 1:10, col = c("snow2", "snow3"))
 hist(airbnb[satisfaction>=7,11], breaks = seq(7, 10, 0.2), col = c("snow2", "snow3"), main = "Histogram van de satisfaction scores tussen 7 en 10")
 table(floor(satisfaction))
+sd(realSum, capacity, bedrooms, dist, metro, attr, rest, cleanliness)
+sd(realSum)
+sd(capacity)
+sd(bedrooms)
+sd(dist)
+sd(metro)
+sd(attr)
+sd(rest)
+sd(cleanliness)
+range(cleanliness)[2]-range(cleanliness)[1]
