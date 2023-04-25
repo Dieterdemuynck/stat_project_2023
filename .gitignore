@@ -42,6 +42,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# Generated PDF files
+*.pdf
+
 # -------------------------------------------------------------------
 # LaTeX files
 # -------------------------------------------------------------------
