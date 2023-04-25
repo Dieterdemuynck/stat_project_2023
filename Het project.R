@@ -14,21 +14,19 @@ attach(airbnb)
 
 # 2) Gegevens verkennnen
 
-###histogram plotten met daarboven een expliciete normale, lognormale en exponentiele verdeling erbij
-
 summary(airbnb)
 hist(log(realSum))
-#de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
-#realSum is kwantitatief en continu
+# de 1e 4 zijn voor jasper, de laatste 3 voor Dieter
+# realSum is kwantitatief en continu
 summary(realSum)
 mean(realSum)
 median(realSum)
 sd(realSum)
 range(realSum)
-plot(realSum)#??n zeer duidelijke uitschieter
+plot(realSum) # 1 zeer duidelijke uitschieter
 boxplot(realSum)
-hist(realSum)#zeer rechtsscheef
-hist(log(realSum))#iets "normaler" verdeeld
+hist(realSum) # zeer rechtsscheef
+hist(log(realSum)) # iets "normaler" verdeeld
 
 #room is een kwalitatieve variabele
 summary(room)
@@ -92,14 +90,20 @@ text(x, table(host)+30, labels = as.character(y))
 pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", labels = c("1", "2-4", ">4"))
 
 # 10: cleanliness
-# Kwalitatief, ordinaal (TODO: misschien toch kwantitatief?)
+# Kwalitatief, ordinaal
+# REDEN: modale score van 1-10, maar een 9 is niet per-se "properder" dan een 8,
+#   maar de huurders hebben dit in het algemeen wel zo ervaren.
+#   Dit is dus minder een meetwaarde, maar eerder een categorische veranderlijke
 # Zeer linksscheef, meer dan de helft geeft "10"
 # Exponentieel verdeeld?
 table(cleanliness)
 hist(cleanliness, col = c("snow2", "snow3"))
 
 # 11: satistfaction
-# Kwantitatief, discreet (misschien toch continu?)
+# Kwantitatief, continu
+# REDEN: terwijl cleanliness kwalitatief zou zijn, lijkt satisfaction mij toch
+#   eerder een "gemeten waarde." Het lijkt mij hier een afgeronde continue
+#   waarde, die inderdaad "meet" hoe satisfied een huurder is.
 # Opnieuw zeer linksscheef
 # Exponentieel verdeeld?
 hist(satisfaction, breaks = 1:10, col = c("snow2", "snow3"))
