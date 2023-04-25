@@ -119,3 +119,22 @@ sd(attr)
 sd(rest)
 sd(cleanliness)
 range(cleanliness)[2]-range(cleanliness)[1]
+###Inferentiele statistiek
+
+ t.test(x= realSum, mu = 620)
+ 
+?pnorm
+chisq.test(x= length(airbnb[ host=="enige beschikbare woning", ]), y= length(airbnb[ host != 'enige beschibare woning',  ]))
+airbnb[host=='enige beschikbare woning', ]        
+table(host)
+pnorm(x=length(airbnb[ , host==0 ]), mean = 0)
+airbnb[, host== 'enige beschikbare woning']
+host[host == 'enige beschikbare woning']
+
+n = length(host[host=='enige beschikbare woning'])
+w = length(host[host!= 'enige beschikbare woning'])
+m = length(host)
+p0 = (n*(n/m)+ w*(w/m))/(n+w)
+pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
+
+pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)
