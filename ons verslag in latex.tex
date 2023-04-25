@@ -1,91 +1,88 @@
-\documentclass{article}
+\documentclass[a4paper,kulak]{kulakarticle} %options: kul or kulak (default)
+
+\usepackage[dutch]{babel}
 \usepackage{longtable}
 \usepackage{array}
 \usepackage[document]{ragged2e}
 
-%opening
-\title{project statistiek}
+\date{Academiejaar 2022 -- 2023}
+\address{
+	Bachelor Wiskunde \& Bachelor Informatica \\
+	Statistiek X0A14B \\
+	Bram De Rock, Stijn Rebry}
+\title{Project Statistiek: AirBnB}
 \author{Jasper Denorme, Dieter Demunck, Louis Vandenbruwaene}
 
+
 \begin{document}
-
-\maketitle
-
-
-
-\section{Inleiding}
-bla bla bla
-\section{verkenning van de gegevens}
-
-
-
-\begin{tabular}{c|p{10cm}}
 	
-
-	\raggedright
-	   Naam & Beschrijving\\
-	\hline
+	\maketitle
 	
-	 realSum & Som van alle kosten in euro\\ 
-	 room & Soort verblijf (1 = volledige woning, 2 = afzonderlijke kamer, 
-	3 = gedeelde kamer) \\ 
-	 capacity & Maximaal aantal gasten \\
-	 bedrooms & Aantal beschikbare slaapkamers in het verblijf \\
-	 dist & Aantal beschikbare slaapkamers in het verblijf (km) \\
-	 metro & Afstand tot dichtstbijzijnde metro-halte (km)\\
-	 attr & Attractiescore, nabijheid van bezienswaardigheden \\
-	 rest & Restaurantscore, nabijheid van restaurants \\ 
-	 host & Type verhuurder (0 = enige beschikbare woning, 1 = 2 tot 4 beschikbare woningen,
-	2 = meer dan 4 beschikbare woningen) \\ 
-	 cleanliness & Modale score voor netheid van het verblijf volgensgasten (op 10) \\
+	\section*{Inleiding}
 	
-	 satisfaction & Tevredenheid van de gasten (op 10)\\
-  
-
-\end{tabular}
-\vspace{1cm}
-
-
+	Inleidende tekst.
+	
+	\section{Verkenning van de gegevens}
+	
+	\begin{tabular}{c|p{10cm}}
+		
+		\raggedright
+		Naam & Beschrijving\\
+		\hline
+		
+		realSum & Som van alle kosten in euro\\ 
+		room & Soort verblijf (1 = volledige woning, 2 = afzonderlijke kamer, 
+		3 = gedeelde kamer) \\ 
+		capacity & Maximaal aantal gasten \\
+		bedrooms & Aantal beschikbare slaapkamers in het verblijf \\
+		dist & Aantal beschikbare slaapkamers in het verblijf (km) \\
+		metro & Afstand tot dichtstbijzijnde metro-halte (km)\\
+		attr & Attractiescore, nabijheid van bezienswaardigheden \\
+		rest & Restaurantscore, nabijheid van restaurants \\ 
+		host & Type verhuurder (0 = enige beschikbare woning, 1 = 2 tot 4 beschikbare woningen,
+		2 = meer dan 4 beschikbare woningen) \\ 
+		cleanliness & Modale score voor netheid van het verblijf volgensgasten (op 10) \\
+		
+		satisfaction & Tevredenheid van de gasten (op 10)\\
+		
+		
+	\end{tabular}
+	\vspace{1cm}
+	
 	\begin{center}
 		\begin{tabular}{| l| l| l|  p{5cm} |}
-		\hline
-		Naam & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [0.5ex]
-		\hline\hline
-		realSum & $604.8\pm 443.6828 $ & $7964.755$  &  zeer rechtsscheef\\   
-		\hline
-		capacity & $2.77\pm 1.019876$ & $4$  & rechtsscheef \\
-		\hline
-		bedrooms & $1.303\pm 0.7329492$ & $5$ & rechtsscheef \\
-		\hline
-		dist & $2.80634\pm 2.036602$  & $11.18089$ & zeer rechtsscheef \\ [1ex] 
-		\hline
-		metro & $1.0892\pm 0.8265551$ & $4.375388$ & zeer rechtsscheef \\ [1ex] 
-		\hline
-		attr & $2.101\pm 0.9407762$ & $9$  & rechtsscheef \\ [1ex] 
-		\hline
-		rest & $3.285\pm 1.760009$ & $9$ & benaderend lognormaal met zware staarten \\ [1ex] 
-		\hline
-		cleanliness & $9.471\pm 0.8306492$ & $8$ & benaderend exponentieel  \\ [1ex] 
-		\hline
-	\end{tabular}
-\end{center}
+			\hline
+			Naam & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [0.5ex]
+			\hline\hline
+			realSum & $604.8\pm 443.6828 $ & $7964.755$  &  zeer rechtsscheef\\   
+			\hline
+			capacity & $2.77\pm 1.019876$ & $4$  & rechtsscheef \\
+			\hline
+			bedrooms & $1.303\pm 0.7329492$ & $5$ & rechtsscheef \\
+			\hline
+			dist & $2.80634\pm 2.036602$  & $11.18089$ & zeer rechtsscheef \\ [1ex] 
+			\hline
+			metro & $1.0892\pm 0.8265551$ & $4.375388$ & zeer rechtsscheef \\ [1ex] 
+			\hline
+			attr & $2.101\pm 0.9407762$ & $9$  & rechtsscheef \\ [1ex] 
+			\hline
+			rest & $3.285\pm 1.760009$ & $9$ & benaderend lognormaal met zware staarten \\ [1ex] 
+			\hline
+			cleanliness & $9.471\pm 0.8306492$ & $8$ & benaderend exponentieel  \\ [1ex] 
+			\hline
+		\end{tabular}
+	\end{center}
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{inferentie ofzo}
-\section{regressie ofzo}
-\section{conclusie}
+	\section{inferentie ofzo}
+	
+	Tekst inferentie.
+	
+	\section{regressie ofzo}
+	
+	Tekst regressie.
+	
+	\section*{Besluit}
+	
+	Afsluitende tekst.
+	
 \end{document}
