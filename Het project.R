@@ -1,6 +1,6 @@
 # 1) Gegevens inlezen en manipuleren 
 
-airbnb <- read.csv2("~/2e Bachelor/stat404/stat_project_2023/airbnb.csv", sep="", stringsAsFactors=TRUE)
+airbnb <- read.csv2("airbnb.csv", sep="", stringsAsFactors=TRUE)
 range_attr  = max(airbnb$attr)-min(airbnb$attr)
 range_rest  = max(airbnb$rest)-min(airbnb$rest)
 airbnb$attr = 1 + 9*((airbnb$attr - min(airbnb$attr)) / range_attr)
