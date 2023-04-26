@@ -138,3 +138,4 @@ p0 = (n*(n/m)+ w*(w/m))/(n+w)
 pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
 
 pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)
+

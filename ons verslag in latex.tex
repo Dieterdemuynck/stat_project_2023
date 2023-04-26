@@ -1,88 +1,159 @@
-\documentclass[a4paper,kulak]{kulakarticle} %options: kul or kulak (default)
+\documentclass[a4paper]{kulakarticle}
 
+\usepackage[utf8]{inputenc}
 \usepackage[dutch]{babel}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage[document]{ragged2e}
-
+\usepackage{titling}
+\title{Kost van een Airbnb-verblijf}
+\author{Project statistiek}
 \date{Academiejaar 2022 -- 2023}
 \address{
-	Bachelor Wiskunde \& Bachelor Informatica \\
-	Statistiek X0A14B \\
-	Bram De Rock, Stijn Rebry}
-\title{Project Statistiek: AirBnB}
-\author{Jasper Denorme, Dieter Demunck, Louis Vandenbruwaene}
-
+	Voornaam 1 Naam 1\\
+	Voornaam 2 Naam 2\\
+	Voornaam 3 Naam 3}
+\usepackage{graphicx,flafter,framed,caption}
+\usepackage{amsfonts,amssymb,amsmath,textcomp,eurosym,wasysym}
+\usepackage{listings}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tabularx,array}
+\newcommand{\rood}[1]{\textcolor{red}{#1}}
 
 \begin{document}
-	
 	\maketitle
 	
 	\section*{Inleiding}
+	Airbnb is een online platform (\href{https://www.airbnb.com}{\texttt{www.airbnb.com}}) waarop reizigers een kort verblijf kunnen boeken in een accommodatie (bv. een kamer, een huis, een woonboot, …) die door particulieren wordt verhuurd. Airbnb werd opgericht in 2008 en is ondertussen een erg populair alternatief geworden voor de traditionele hotels. \\
+	\\
+	Dit onderzoek focust op de totale kostprijs voor het huren van een Airbnb-verblijf in Amsterdam voor twee personen gedurende een weekend (vrijdag tot zondag). Er wordt nagegaan met welke factoren deze kostprijs samenhangt en in welke mate de kost daarmee kan worden voorspeld. Hierbij wordt er gebruik gemaakt van een aantal veranderlijken verzameld in het kader van een onderzoeksproject uitgevoerd door Kristóf Gyódi en Łukasz Nawaro. Het gaat enerzijds over kenmerken van het verblijf en tevredenheid van eerdere gasten volgens de gegevens van Airbnb, anderzijds over de ligging van het verblijf ten opzichte van het stadscentrum, bezienswaardigheden en restaurants, telkens rekening houdend met de populariteit, zoals gerapporteerd door TripAdvisor.    \\
+	Tabel \ref{tab:var} beschrijft de variabelen en een uittreksel van de dataset is te zien in Tabel \ref{tab:data}. Tabel \ref{tab:beschrijvend}, ten slotte, geeft enkele basisstatistieken weer van de veranderlijken die gebruikt worden in het onderzoek. 
 	
-	Inleidende tekst.
+\begin{tabular}{c|p{10cm}}
 	
-	\section{Verkenning van de gegevens}
+	\raggedright
+	Naam & Beschrijving\\
+	\hline
 	
-	\begin{tabular}{c|p{10cm}}
-		
-		\raggedright
-		Naam & Beschrijving\\
+	realSum & Som van alle kosten in euro\\ 
+	room & Soort verblijf (1 = volledige woning, 2 = afzonderlijke kamer, 
+	3 = gedeelde kamer) \\ 
+	capacity & Maximaal aantal gasten \\
+	bedrooms & Aantal beschikbare slaapkamers in het verblijf \\
+	dist & Aantal beschikbare slaapkamers in het verblijf (km) \\
+	metro & Afstand tot dichtstbijzijnde metro-halte (km)\\
+	attr & Attractiescore, nabijheid van bezienswaardigheden \\
+	rest & Restaurantscore, nabijheid van restaurants \\ 
+	host & Type verhuurder (0 = enige beschikbare woning, 1 = 2 tot 4 beschikbare woningen,
+	2 = meer dan 4 beschikbare woningen) \\ 
+	cleanliness & Modale score voor netheid van het verblijf volgensgasten (op 10) \\
+	
+	satisfaction & Tevredenheid van de gasten (op 10)\\
+	
+	
+\end{tabular}
+\vspace{1cm}
+
+\begin{center}
+	\begin{tabular}{| l| l| l|  p{5cm} |}
 		\hline
-		
-		realSum & Som van alle kosten in euro\\ 
-		room & Soort verblijf (1 = volledige woning, 2 = afzonderlijke kamer, 
-		3 = gedeelde kamer) \\ 
-		capacity & Maximaal aantal gasten \\
-		bedrooms & Aantal beschikbare slaapkamers in het verblijf \\
-		dist & Aantal beschikbare slaapkamers in het verblijf (km) \\
-		metro & Afstand tot dichtstbijzijnde metro-halte (km)\\
-		attr & Attractiescore, nabijheid van bezienswaardigheden \\
-		rest & Restaurantscore, nabijheid van restaurants \\ 
-		host & Type verhuurder (0 = enige beschikbare woning, 1 = 2 tot 4 beschikbare woningen,
-		2 = meer dan 4 beschikbare woningen) \\ 
-		cleanliness & Modale score voor netheid van het verblijf volgensgasten (op 10) \\
-		
-		satisfaction & Tevredenheid van de gasten (op 10)\\
-		
-		
+		Naam & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [0.5ex]
+		\hline\hline
+		realSum & $604.8\pm 443.6828 $ & $7964.755$  &  zeer rechtsscheef\\   
+		\hline
+		capacity & $2.77\pm 1.019876$ & $4$  & rechtsscheef \\
+		\hline
+		bedrooms & $1.303\pm 0.7329492$ & $5$ & rechtsscheef \\
+		\hline
+		dist & $2.80634\pm 2.036602$  & $11.18089$ & zeer rechtsscheef \\ [1ex] 
+		\hline
+		metro & $1.0892\pm 0.8265551$ & $4.375388$ & zeer rechtsscheef \\ [1ex] 
+		\hline
+		attr & $2.101\pm 0.9407762$ & $9$  & rechtsscheef \\ [1ex] 
+		\hline
+		rest & $3.285\pm 1.760009$ & $9$ & benaderend lognormaal met zware staarten \\ [1ex] 
+		\hline
+		cleanliness & $9.471\pm 0.8306492$ & $8$ & benaderend exponentieel  \\ [1ex] 
+		\hline
 	\end{tabular}
-	\vspace{1cm}
+\end{center}
 	
-	\begin{center}
-		\begin{tabular}{| l| l| l|  p{5cm} |}
-			\hline
-			Naam & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [0.5ex]
-			\hline\hline
-			realSum & $604.8\pm 443.6828 $ & $7964.755$  &  zeer rechtsscheef\\   
-			\hline
-			capacity & $2.77\pm 1.019876$ & $4$  & rechtsscheef \\
-			\hline
-			bedrooms & $1.303\pm 0.7329492$ & $5$ & rechtsscheef \\
-			\hline
-			dist & $2.80634\pm 2.036602$  & $11.18089$ & zeer rechtsscheef \\ [1ex] 
-			\hline
-			metro & $1.0892\pm 0.8265551$ & $4.375388$ & zeer rechtsscheef \\ [1ex] 
-			\hline
-			attr & $2.101\pm 0.9407762$ & $9$  & rechtsscheef \\ [1ex] 
-			\hline
-			rest & $3.285\pm 1.760009$ & $9$ & benaderend lognormaal met zware staarten \\ [1ex] 
-			\hline
-			cleanliness & $9.471\pm 0.8306492$ & $8$ & benaderend exponentieel  \\ [1ex] 
-			\hline
+	\section{Methode}
+	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	\subsection{Kenmerken van de steekproef}
+Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977).
+	
+	\subsection{Gemiddelde kost}
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\subsection{Associatie met de verschillende veranderlijken}
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\subsection{Verklaren van de kost}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\section{Resultaten}
+	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	\subsection{Kenmerken van de steekproef}
+De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29).
+	
+	\begin{table}
+		\caption{Basisstatistieken.}
+		\label{tab:beschrijvend}
+		\begin{tabularx}{\textwidth}{r*{3}{|l}}
+			Naam & Gemiddelde en standaardfout & Bereik & Algemene vorm \\ \hline
+			&            &        &
+		\end{tabularx}
+		\begin{tabular}{r*{2}{|r}}
+			Veranderlijke & Uitkomst 1 & Uitkomst 2 \\ \hline
+			Aantal &            &            \\ \hline
+			Proportie &            &
 		\end{tabular}
-	\end{center}
+	\end{table}
+	\subsection{Gemiddelde kost}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	\section{inferentie ofzo}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	\subsection{Associatie met de verschillende veranderlijken}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Tekst inferentie.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	\section{regressie ofzo}
+	\subsection{Verklaren van de kost}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Tekst regressie.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\section{Discussie}
+	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	\subsection{Kenmerken van de steekproef}
+Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer.
+	
+	\subsection{Gemiddelde kost}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\subsection{Associatie met de verschillende veranderlijken}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	\subsection{Verklaren van de kost}
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
 	\section*{Besluit}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Afsluitende tekst.
-	
-\end{document}
+\end{document} 
