@@ -1,3 +1,6 @@
+### 0) Extra QoL functies ######################################################
+clear_envir <- function() {rm(list = ls(.GlobalEnv)[ls(.GlobalEnv) != "airbnb" & ls(.GlobalEnv) != "clear_envir"], envir = .GlobalEnv)}
+
 ### 1) Gegevens inlezen en manipuleren #########################################
 
 airbnb <- read.csv2("airbnb.csv", sep="", stringsAsFactors=TRUE)
@@ -10,6 +13,7 @@ airbnb$lng  = NULL
 airbnb$room = factor(airbnb$room, levels = c(1,2,3), labels = c("volledige woning","afzonderlijke kamer", "gedeelde kamer"))
 airbnb$host = factor(airbnb$host, levels = c(0,1,2), labels = c("enige beschikbare woning", "2 tot 4 beschikbare woningen", "meer dan 4 beschikbare woningen"))
 
+clear_envir()
 attach(airbnb)
 
 
@@ -161,3 +165,7 @@ pvalue_bedrooms <- pchisq(q  = chisq_bedrooms,
                           lower.tail = FALSE)
 print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
 # RESULTAAT: p-waarde erg klein, aan zekerheid grenzend NIET poisson verdeeld
+
+
+### Einde sessie ###############################################################
+detach(airbnb)
