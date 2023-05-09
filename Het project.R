@@ -141,19 +141,14 @@ range(cleanliness)[2]-range(cleanliness)[1]
 t.test(x= realSum, mu = 620) #cls geldig voor n = 977
 
 # Particuliere versus Professionele aanbieders
-chisq.test(x= length(airbnb[ host=="enige beschikbare woning", ]), y= length(airbnb[ host != 'enige beschibare woning',  ]))
-airbnb[host=='enige beschikbare woning', ]        
-table(host)
-pnorm(x=length(airbnb[ , host==0 ]), mean = 0)
-airbnb[, host== 'enige beschikbare woning']
-host[host == 'enige beschikbare woning']
-
+part= as.numeric(table(host))[1]
+npart = as.numeric(table(host))[2] + as.numeric(table(host))[3]
+chisq.test(x= c(part, npart ))
 n = length(host[host=='enige beschikbare woning'])
 w = length(host[host!= 'enige beschikbare woning'])
 m = length(host)
 p0 = (n*(n/m)+ w*(w/m))/(n+w)
 pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
-
 pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)
 
 ## Test Poisson verdeling op beschikbare slaapkamers
@@ -180,8 +175,6 @@ print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
 #controleren of de bedrooms poisson verdeeld zijn of niet: Mijn conclusie; ZEKER NIET
 
 lambda = mean(bedrooms)
-dpois(0:4, lambda)
-sum(dpois(0:4, lambda))
 dpois(0:4, lambda)*length(bedrooms)
 
 nul = length(bedrooms[bedrooms == 0])
@@ -189,13 +182,15 @@ een = length(bedrooms[bedrooms == 1])
 twee = length(bedrooms[bedrooms == 2])
 drie = length(bedrooms[bedrooms == 3])
 vier = length(bedrooms[bedrooms == 4 ]) + length(bedrooms[bedrooms == 5])
+#cochranregel nu wel voldaan
 
 
 
 chisq.test( c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE )
+#977 observaties==> chisq verwerpt zeer snel
+
 
 plot((0:4), c(nul, een , twee, drie, vier))
-
 plot((0:4), dpois(0:4, lambda))
 
 x1 = (nul-977*dpois(0, lambda))**2/(977*dpois(0, lambda))
@@ -214,23 +209,28 @@ chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = T
 ###Gemiddelde opbrengst testen
 mean(bedrooms)
 var(bedrooms)
+#1)
 #realSum met capacity 2 testen waarbij cleanliness = 10 of niet
 #CLS is voldaan 
 #varianties niet gelijk
-t.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10])
-var.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10])
+shapiro.test(realSum[capacity==2 & cleanliness ==10])
+shapiro.test(realSum[capacity==2 & cleanliness !=10]) #allebei met aan zekerheid grenzende waarschijnlijkheid zijn ze niet normaal verdeeld
+t.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10], var.equal = FALSE)
+#randgeval met p-waarde
 
+#2)
 #CLS voldaan
-
 #randgeval voor varianties, we testen beide gevallen
-t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1])
-realSum[capacity==2 & bedrooms == 1]
-realSum[capacity==2 & bedrooms != 1]
-var.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1])
-t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1], var.equal = TRUE )
+shapiro.test(realSum[capacity==2 & bedrooms == 1])
+shapiro.test(realSum[capacity==2 & bedrooms != 1])#allebei niet normaal verdeeld
+t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1], var.equal = FALSE)
+#er blijkt geen significant verschil
 
+#3)
 ### CLS voldaan 
 ###varianties zijn zeker niet gelijk
-t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'])
-var.test(x = realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'])
-realSum[capacity==2 & room != 'volledige woning']
+shapiro.test(realSum[capacity==2 & room == 'volledige woning'])
+shapiro.test(realSum[capacity==2 & room != 'volledige woning']) #beide niet normaal
+t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'], var.equal = FALSE)
+#er blijkt een significant verschil
+
