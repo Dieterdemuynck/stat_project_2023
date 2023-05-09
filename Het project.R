@@ -123,6 +123,16 @@ hist(cleanliness, col = c("snow2", "snow3"))
 hist(satisfaction, breaks = 1:10, col = c("snow2", "snow3"))
 hist(airbnb[satisfaction>=7,11], breaks = seq(7, 10, 0.2), col = c("snow2", "snow3"), main = "Histogram van de satisfaction scores tussen 7 en 10")
 table(floor(satisfaction))
+sd(realSum, capacity, bedrooms, dist, metro, attr, rest, cleanliness)
+sd(realSum)
+sd(capacity)
+sd(bedrooms)
+sd(dist)
+sd(metro)
+sd(attr)
+sd(rest)
+sd(cleanliness)
+range(cleanliness)[2]-range(cleanliness)[1]
 
 
 ### 3) Inferentiele statistiek #################################################
@@ -167,5 +177,59 @@ print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
 # RESULTAAT: p-waarde erg klein, aan zekerheid grenzend NIET poisson verdeeld
 
 
-### Einde sessie ###############################################################
-detach(airbnb)
+#controleren of de bedrooms poisson verdeeld zijn of niet: Mijn conclusie; ZEKER NIET
+
+dpois(0:4, lambda)
+sum(dpois(0:4, lambda))
+dpois(0:4, lambda)*length(bedrooms)
+
+nul = length(bedrooms[bedrooms == 0])
+een = length(bedrooms[bedrooms == 1])
+twee = length(bedrooms[bedrooms == 2])
+drie = length(bedrooms[bedrooms == 3])
+vier = length(bedrooms[bedrooms == 4 ]) + length(bedrooms[bedrooms == 5])
+
+lambda = mean(bedrooms)
+
+chisq.test( c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE )
+
+plot((0:4), c(nul, een , twee, drie, vier))
+
+plot((0:4), dpois(0:4, lambda))
+
+x1 = (nul-977*dpois(0, lambda))**2/(977*dpois(0, lambda))
+x2 = (een - 977*dpois(1, lambda))**2/(977*dpois(1, lambda))
+x3 = (twee - 977*dpois(2, lambda))**2/(977*dpois(2, lambda))
+x4 = (drie - 977*dpois(3, lambda))**2/(977*dpois(3, lambda))
+x5 = (vier - 977*dpois(4, lambda))**2/(977*dpois(4, lambda))
+sum(c(x1,x2,x3,x4,x5))
+
+pchisq(429.509, 3 , lower.tail = FALSE)
+
+chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE)
+chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE)$residuals
+
+
+###Gemiddelde opbrengst testen
+mean(bedrooms)
+var(bedrooms)
+#realSum met capacity 2 testen waarbij cleanliness = 10 of niet
+#CLS is voldaan 
+#varianties niet gelijk
+t.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10])
+var.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10])
+
+#CLS voldaan
+
+#randgeval voor varianties, we testen beide gevallen
+t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1])
+realSum[capacity==2 & bedrooms == 1]
+realSum[capacity==2 & bedrooms != 1]
+var.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1])
+t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1], var.equal = TRUE )
+
+### CLS voldaan 
+###varianties zijn zeker niet gelijk
+t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'])
+var.test(x = realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'])
+realSum[capacity==2 & room != 'volledige woning']
