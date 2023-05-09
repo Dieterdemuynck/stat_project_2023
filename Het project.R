@@ -138,7 +138,7 @@ range(cleanliness)[2]-range(cleanliness)[1]
 ### 3) Inferentiele statistiek #################################################
 
 # Vergelijking gemiddelde kost tussen 2023 en 2019
-t.test(x= realSum, mu = 620)
+t.test(x= realSum, mu = 620) #cls geldig voor n = 977
 
 # Particuliere versus Professionele aanbieders
 chisq.test(x= length(airbnb[ host=="enige beschikbare woning", ]), y= length(airbnb[ host != 'enige beschibare woning',  ]))
@@ -179,6 +179,7 @@ print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
 
 #controleren of de bedrooms poisson verdeeld zijn of niet: Mijn conclusie; ZEKER NIET
 
+lambda = mean(bedrooms)
 dpois(0:4, lambda)
 sum(dpois(0:4, lambda))
 dpois(0:4, lambda)*length(bedrooms)
@@ -189,7 +190,7 @@ twee = length(bedrooms[bedrooms == 2])
 drie = length(bedrooms[bedrooms == 3])
 vier = length(bedrooms[bedrooms == 4 ]) + length(bedrooms[bedrooms == 5])
 
-lambda = mean(bedrooms)
+
 
 chisq.test( c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE )
 
