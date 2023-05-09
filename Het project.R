@@ -142,5 +142,22 @@ pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
 
 pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)
 
-# Test Poisson verdeling op beschikbare slaapkamers
-# TODO
+## Test Poisson verdeling op beschikbare slaapkamers
+# Methode zoals op p.293-295
+lambda_hat  <- mean(bedrooms)  # Schatting lambda
+
+frequencies <- as.numeric(table(bedrooms))
+categories  <- as.numeric(names(table(bedrooms)))
+expected    <- dpois(categories, lambda=lambda_hat) * sum(frequencies)
+
+estimated_value_count <- 1
+degrees_of_freedom <- length(categories) - estimated_value_count - 1  # p.294
+
+# chi-kwadraat statistiek met als verwachte kansen die voor een poisson
+# verdeling met geschatte lambda == gemiddelde waarde
+chisq_bedrooms  <- sum((frequencies - expected)^2/expected)
+pvalue_bedrooms <- pchisq(q  = chisq_bedrooms,
+                          df = degrees_of_freedom,
+                          lower.tail = FALSE)
+print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
+# RESULTAAT: p-waarde erg klein, aan zekerheid grenzend NIET poisson verdeeld
