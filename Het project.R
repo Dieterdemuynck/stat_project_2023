@@ -250,17 +250,28 @@ cor.test(realSum, satisfaction, method = c("spearman")) #waarschijnlijk afhankel
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
 proper = cut(cleanliness, breaks = c(0, 7.5,8.5,9.5, 10.5), labels = c("2-7","8","9","10"))
 p = table(som, proper)
-chisq.test(p, rescale.p = TRUE )
-
+chisq.test(p)
+chisq.test(p)$residuals
 #capacity = cut(capacity, breaks = )
-cap = cut(capacity, breaks = c(0,2.5, 3.5, 4.5, 6.5 ))
+cap = cut(capacity, breaks = c(0,2.5, 3.5, 4.5, 6.5 ), labels = c('Jos','Dirk', 'Anja', 'André'))
 p = table(som, cap)
 chisq.test(p)$expected
+chisq.test(p)
 
-
-bed = cut(bedrooms, breaks = c())
-p = table(som, bedrooms)
+bed = cut(bedrooms, breaks = c(-0.5, 0.5, 1.5, 2.5, 6), labels = c('geef','da', 'deftige', 'namen'))
+p = table(som, bed)
 chisq.test(p)$expected
+chisq.test(p)
+
+slagroom = cut(as.numeric(room),  breaks = c(0.5, 1.5,3.5 ), labels = c('volledige woning', 'kamer'))
+p = table(som, slagroom)
+chisq.test(p)$expected
+chisq.test(p)
+
+p = table(som, host)
+chisq.test(p)$expected
+chisq.test(p)
+
 
 #3.3.4 Verklaren van de opbrengsten
 simpelmodel1 = lm(realSum~attr); simpelmodel1
