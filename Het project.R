@@ -314,7 +314,15 @@ lines(sort(x_i2), predictie2[order(x_i2) ,2] , col = "green")
 lines(sort(x_i2), predictie2[order(x_i2) ,3] , col = "green")
 par((mfrow = c(1,1)))
 
-model = lm(realSum~satisfaction + cleanliness + host + rest + attr + metro + dist + bedrooms + room + capacity)
+model = lm(realSum~satisfaction + cleanliness  + rest + attr + metro + dist + bedrooms  + capacity)
 summary(model)
+model = update(model ,.~. -metro )
+summary(model)
+model = update(model ,.~. -cleanliness )
+summary(model)
+model = update(model ,.~. -attr )
+summary(model)
+
+
 
 
