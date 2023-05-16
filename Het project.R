@@ -247,12 +247,19 @@ cor.test(realSum, attr, method = c("spearman"))#waarschijnlijk afhankelijk
 cor.test(realSum, rest, method = c("spearman"))#waarschijnlijk afhankelijk
 cor.test(realSum, satisfaction, method = c("spearman")) #waarschijnlijk afhankelijk
 
-
-quantile(realSum, probs= seq(0,1,1/4))
-?cut
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
-proper = cut(cleanliness, breaks = c(7.5,8.5,9.5), labels = c("2-7","8","9","10"))
-p = table(som, cleanliness)
+proper = cut(cleanliness, breaks = c(0, 7.5,8.5,9.5, 10.5), labels = c("2-7","8","9","10"))
+p = table(som, proper)
+chisq.test(p, rescale.p = TRUE )
+
+#capacity = cut(capacity, breaks = )
+cap = cut(capacity, breaks = c(0,2.5, 3.5, 4.5, 6.5 ))
+p = table(som, cap)
+chisq.test(p)$expected
+
+
+bed = cut(bedrooms, breaks = c())
+p = table(som, bedrooms)
 chisq.test(p)$expected
 
 #3.3.4 Verklaren van de opbrengsten
