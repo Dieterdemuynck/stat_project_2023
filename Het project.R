@@ -234,3 +234,47 @@ shapiro.test(realSum[capacity==2 & room != 'volledige woning']) #beide niet norm
 t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'], var.equal = FALSE)
 #er blijkt een significant verschil
 
+
+#3.3.3 associatie met de verschillende veranderlijken
+
+###normaliteit nagaan
+
+shapiro.test(realSum)
+
+cor.test(realSum, dist, method = c("spearman")) #waarschijnlijk afhankelijk
+cor.test(realSum, metro, method = c("spearman")) #waarschijnlijk afhankelijk
+cor.test(realSum, attr, method = c("spearman"))#waarschijnlijk afhankelijk
+cor.test(realSum, rest, method = c("spearman"))#waarschijnlijk afhankelijk
+cor.test(realSum, satisfaction, method = c("spearman")) #waarschijnlijk afhankelijk
+
+
+quantile(realSum, probs= seq(0,1,1/4))
+?cut
+som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
+proper = cut(cleanliness, breaks = c(7.5,8.5,9.5), labels = c("2-7","8","9","10"))
+p = table(som, cleanliness)
+chisq.test(p)$expected
+
+#3.3.4 Verklaren van de opbrengsten
+simpelmodel1 = lm(realSum~attr); simpelmodel1
+par(mfrow = c(2,2))
+plot(simpelmodel1)
+par(mfrow = c(1,1))
+summary(simpelmodel1)
+
+simpelmodel2 = lm(log10(realSum)~log10(attr)); simpelmodel2
+par(mfrow = c(2,2))
+plot(simpelmodel2)
+par(mfrow = c(1,1))
+summary(simpelmodel2)
+
+
+
+
+
+
+
+
+
+
+
