@@ -286,13 +286,35 @@ plot(simpelmodel2)
 par(mfrow = c(1,1))
 summary(simpelmodel2)
 
+y_hat = simpelmodel1$fitted.values
+x_i = simpelmodel1$model[ ,2]
+y_i = simpelmodel1$model[ ,1]
 
+y_hat2 = simpelmodel2$fitted.values
+x_i2 = simpelmodel2$model[ ,2]
+y_i2 = simpelmodel2$model[ ,1]
 
+par(mfrow = c(1,2))
+betrouwb = predict( simpelmodel1, interval = "confidence" , level = 0.95)
+predictie = predict( simpelmodel1, interval = "prediction" , level = 0.95)
+plot ( realSum ~ attr)
+abline( simpelmodel1 , col = "red")
+lines(sort(x_i), betrouwb[order(x_i) ,2] , col = "blue")
+lines(sort(x_i), betrouwb[order(x_i) ,3] , col = "blue")
+lines(sort(x_i), predictie[order(x_i) ,2] , col = "green")
+lines(sort(x_i), predictie[order(x_i) ,3] , col = "green")
 
+betrouwb2 = predict( simpelmodel2, interval = "confidence" , level = 0.95)
+predictie2 = predict( simpelmodel2, interval = "prediction" , level = 0.95)
+plot( log10(realSum) ~ log10(attr))
+abline( simpelmodel2 , col = "red")
+lines(sort(x_i2), betrouwb2[order(x_i2) ,2] , col = "blue")
+lines(sort(x_i2), betrouwb2[order(x_i2) ,3] , col = "blue")
+lines(sort(x_i2), predictie2[order(x_i2) ,2] , col = "green")
+lines(sort(x_i2), predictie2[order(x_i2) ,3] , col = "green")
+par((mfrow = c(1,1)))
 
-
-
-
-
+model = lm(realSum~satisfaction + cleanliness + host + rest + attr + metro + dist + bedrooms + room + capacity)
+summary(model)
 
 
