@@ -241,17 +241,17 @@ t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacit
 
 shapiro.test(realSum)
 
-cor.test(realSum, dist, method = c("spearman")) #waarschijnlijk afhankelijk
-cor.test(realSum, metro, method = c("spearman")) #waarschijnlijk afhankelijk
-cor.test(realSum, attr, method = c("spearman"))#waarschijnlijk afhankelijk
-cor.test(realSum, rest, method = c("spearman"))#waarschijnlijk afhankelijk
-cor.test(realSum, satisfaction, method = c("spearman")) #waarschijnlijk afhankelijk
+cor.test(realSum, dist, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
+cor.test(realSum, metro, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
+cor.test(realSum, attr, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
+cor.test(realSum, rest, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
+cor.test(realSum, satisfaction, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
 proper = cut(cleanliness, breaks = c(0, 7.5,8.5,9.5, 10.5), labels = c("2-7","8","9","10"))
 p = table(som, proper)
 chisq.test(p)
-chisq.test(p)$residuals
+chisq.test(p)$expected
 #capacity = cut(capacity, breaks = )
 cap = cut(capacity, breaks = c(0,2.5, 3.5, 4.5, 6.5 ), labels = c('Jos','Dirk', 'Anja', 'André'))
 p = table(som, cap)

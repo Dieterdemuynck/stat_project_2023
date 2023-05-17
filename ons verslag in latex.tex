@@ -7,9 +7,9 @@
 \author{Project statistiek}
 \date{Academiejaar 2022 -- 2023}
 \address{
-	Voornaam 1 Naam 1\\
-	Voornaam 2 Naam 2\\
-	Voornaam 3 Naam 3}
+	Louis Vandenbruwaene\\
+	Jasper Denorme\\
+	Dieter Demunck}
 \usepackage{graphicx,flafter,framed,caption}
 \usepackage{amsfonts,amssymb,amsmath,textcomp,eurosym,wasysym}
 \usepackage{listings}
@@ -17,6 +17,7 @@
 \sisetup{output-decimal-marker={,}}
 \usepackage{enumitem}
 \usepackage{multicol}
+\usepackage{caption}
 \usepackage{tabularx,array}
 \newcommand{\rood}[1]{\textcolor{red}{#1}}
 
@@ -85,15 +86,46 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	
 	\subsection{Gemiddelde kost}
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Hier zal de onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van andere variabelen. Ten eerste 
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	
+
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Verder wordt de associatie tussen de totale kost van een verblijf en de andere veranderlijken onderzocht. Aangezien de totale prijs niet normaal verdeeld is en er enkele incidenteel samenvallende waarden voorkomen, wordt getest of de rangcorrelatie met de andere continue variabelen significant van nul verschilt. Een $\chi ^2$-test voor afhankelijkheid in een kruistabel kan beslissen of er sprake is van afhankelijkheid tussen de prijs en de discrete variabelen. Er wordt gewerkt met de gediscretiseerde prijs en alle niet continue variabelen worden samengevoegd om zo goed mogelijk an de Cochranregel te voldoen. 
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	De totale kost van een verblijf is afhankelijk van alle veranderlijken in tabel (\ref{continue variabelen afhankelijkheid}). Hiervoor werd een Spearman correlatietest gebruikt, omdat de totale kostprijs niet normaal verdeeld is. Voor de andere variabelen werd een chi-kwadraat test gebruikt. De resultaten zijn te zien in (\ref{discrete variabelen afhankelijkheid}).
+	
+	
+	\begin{tabular}{c|c|c|c }
+		%\caption{Afhankelijkheid van de prijs met de continue variabelen.}
+		 naam & p-waarde & afhankelijkheid & rho\\
+		 \hline
+		 \hline
+		 dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
+		 metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
+		 attr &$ < 2.2\cdot 10^{-16}$& ja&$0.4314979 $ \\
+		 rest &$ < 2.2\cdot 10^{-16}$& ja&$0.4276987 $ \\
+		 satisfaction &$ 1.657\cdot 10^{-7}$& ja&$0.1664983 $ \\
+		 
+		 \label{continue variabelen afhankelijkheid}
+		 
+	\end{tabular}
+
+\begin{tabular}{c|c|c|c }
+	naam & p-waarde & afhankelijkheid & $\chi ^2$\\
+	\hline
+	\hline
+	cleanliness & $0.7775$&nee& $5.6174$ \\
+	capacity &$ < 2.2\cdot 10^{-16}$& ja& $390.3$ \\ 
+	bedrooms &$ < 2.2\cdot 10^{-16}$& ja&$368.1 $ \\
+	room &$ < 2.2\cdot 10^{-16}$& ja&$ 337.29$ \\
+	host &$ 5.506\cdot 10^{-7}$& ja&$39.581 $ \\
+	\label{discrete variabelen afhankelijkheid}
+	%\caption{Afhankelijkheid van de prijs met alle niet continue variabelen}
+\end{tabular}
+
+
 	
 	\subsection{Verklaren van de kost}
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
