@@ -206,36 +206,50 @@ chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = T
 chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE)$residuals
 
 
-###Gemiddelde opbrengst testen
-mean(bedrooms)
-var(bedrooms)
-#1)
-#realSum met capacity 2 testen waarbij cleanliness = 10 of niet
-#CLS is voldaan 
-#varianties niet gelijk
-shapiro.test(realSum[capacity==2 & cleanliness ==10])
-shapiro.test(realSum[capacity==2 & cleanliness !=10]) #allebei met aan zekerheid grenzende waarschijnlijkheid zijn ze niet normaal verdeeld
-t.test(x= realSum[capacity==2 & cleanliness ==10] , y= realSum[capacity==2 & cleanliness !=10], var.equal = FALSE)
-#randgeval met p-waarde
+### 3.3.2 Gemiddelde kost
 
-#2)
-#CLS voldaan
-#randgeval voor varianties, we testen beide gevallen
-shapiro.test(realSum[capacity==2 & bedrooms == 1])
-shapiro.test(realSum[capacity==2 & bedrooms != 1])#allebei niet normaal verdeeld
-t.test(x= realSum[capacity==2 & bedrooms == 1] , y= realSum[capacity==2 & bedrooms != 1], var.equal = FALSE)
-#er blijkt geen significant verschil
+## 1)
+# realSum met capacity 2 testen waarbij cleanliness == 10 of niet
+length(na.omit(realSum[capacity==2 & cleanliness==10]))
+length(na.omit(realSum[capacity==2 & cleanliness!=10]))
+# ==> CLS is voldaan
+shapiro.test(realSum[capacity==2 & cleanliness==10])
+shapiro.test(realSum[capacity==2 & cleanliness!=10])
+# ==> allebei met aan z.g.w. niet normaal verdeeld
+t.test(realSum[capacity==2 & cleanliness==10],
+       realSum[capacity==2 & cleanliness!=10],
+       var.equal = FALSE)
+# Er blijkt een randgeval te zijn, geen conclusie.
 
-#3)
-### CLS voldaan 
-###varianties zijn zeker niet gelijk
-shapiro.test(realSum[capacity==2 & room == 'volledige woning'])
-shapiro.test(realSum[capacity==2 & room != 'volledige woning']) #beide niet normaal
-t.test(x= realSum[capacity==2 & room == 'volledige woning'] , y= realSum[capacity==2 & room != 'volledige woning'], var.equal = FALSE)
-#er blijkt een significant verschil
+## 2)
+# realSum met capacity 2 testen waarbij host == "enige beschikbare woning" of niet
+length(na.omit(realSum[capacity==2 & host=="enige beschikbare woning"]))
+length(na.omit(realSum[capacity==2 & host!="enige beschikbare woning"]))
+# ==> CLS voldaan
+shapiro.test(realSum[capacity==2 & host=="enige beschikbare woning"])
+shapiro.test(realSum[capacity==2 & host!="enige beschikbare woning"])
+# ==> allebei met aan z.g.w. niet normaal verdeeld
+t.test(realSum[capacity==2 & host=="enige beschikbare woning"],
+       realSum[capacity==2 & host!="enige beschikbare woning"],
+       var.equal = FALSE)
+# Op basis van de steekproef blijkt dat er een lichte aanwijzing is dat er een
+# verschil in kost zou zijn.
+
+## 3)
+# realSum met capacity 2 testen waarbij room == "volledige woning" of niet
+length(na.omit(realSum[capacity==2 & room=='volledige woning']))
+length(na.omit(realSum[capacity==2 & room!='volledige woning']))
+# ==> CLS is voldaan
+shapiro.test(realSum[capacity==2 & room=='volledige woning'])
+shapiro.test(realSum[capacity==2 & room!='volledige woning'])
+# ==> allebei met aan z.g.w. niet normaal verdeeld
+t.test(realSum[capacity==2 & room=='volledige woning'],
+       realSum[capacity==2 & room!='volledige woning'],
+       var.equal = FALSE)
+# Er is met aan z.g.w. een verschil in de kosten.
 
 
-#3.3.3 associatie met de verschillende veranderlijken
+### 3.3.3 associatie met de verschillende veranderlijken
 
 ###normaliteit nagaan
 
