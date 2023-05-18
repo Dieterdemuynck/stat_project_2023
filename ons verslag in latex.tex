@@ -91,39 +91,20 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Verder wordt de associatie tussen de totale kost van een verblijf en de andere veranderlijken onderzocht. Aangezien de totale prijs niet normaal verdeeld is en er enkele incidenteel samenvallende waarden voorkomen, wordt getest of de rangcorrelatie met de andere continue variabelen significant van nul verschilt. Een $\chi ^2$-test voor afhankelijkheid in een kruistabel kan beslissen of er sprake is van afhankelijkheid tussen de prijs en de discrete variabelen. Er wordt gewerkt met de gediscretiseerde prijs en alle niet continue variabelen worden samengevoegd om zo goed mogelijk an de Cochranregel te voldoen. 
 	
+	Verder wordt de associatie tussen $realSum$ en de andere veranderlijken onderzocht. Aangezien $realSum$ niet normaal verdeeld is en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie van de prijs met de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt gewerkt met de gediscretiseerde totale prijs. De discrete en kwalitatieve variabele worden samengevoegd om zo goed mogelijk aan de Cochranregel te voldoen. Enkel $host$ blijft onveranderd. $RealSum$ wordt verdeeld volgens zijn $4$ kwantielen en de andere opdelingen zijn te vinden in tabel \ref{grenzen}
 	
-	De totale kost van een verblijf is afhankelijk van alle veranderlijken in tabel (\ref{continue variabelen afhankelijkheid}). Hiervoor werd een Spearman correlatietest gebruikt, omdat de totale kostprijs niet normaal verdeeld is. Voor de andere variabelen werd een chi-kwadraat test gebruikt. De resultaten zijn te zien in (\ref{discrete variabelen afhankelijkheid}).
-	
-	
-	\begin{tabular}{c|c|c|c }
-		%\caption{Afhankelijkheid van de prijs met de continue variabelen.}
-		 naam & p-waarde & afhankelijkheid & rho\\
-		 \hline
-		 \hline
-		 dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
-		 metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
-		 attr &$ < 2.2\cdot 10^{-16}$& ja&$0.4314979 $ \\
-		 rest &$ < 2.2\cdot 10^{-16}$& ja&$0.4276987 $ \\
-		 satisfaction &$ 1.657\cdot 10^{-7}$& ja&$0.1664983 $ \\
-		 
-		 \label{continue variabelen afhankelijkheid}
-		 
+	\begin{tabular}{c|c}
+		naam& opdelende grenzen\\
+		\hline
+		$cleanliness$ & $ 0$-$7.5$-$8.5$-$9.5$-$10.5$ \\
+		$capacity$& $-0.5$-$2.5$-$3.5$-$4.5$-$6.5$\\
+		$bedrooms$& $-0.5$-$0.5$-$1.5$-$2.5$-$6$\\
+		$room$& $0.5$-$1.5$-$3.5$\\
+		\label{grenzen}
 	\end{tabular}
-
-\begin{tabular}{c|c|c|c }
-	naam & p-waarde & afhankelijkheid & $\chi ^2$\\
-	\hline
-	\hline
-	cleanliness & $0.7775$&nee& $5.6174$ \\
-	capacity &$ < 2.2\cdot 10^{-16}$& ja& $390.3$ \\ 
-	bedrooms &$ < 2.2\cdot 10^{-16}$& ja&$368.1 $ \\
-	room &$ < 2.2\cdot 10^{-16}$& ja&$ 337.29$ \\
-	host &$ 5.506\cdot 10^{-7}$& ja&$39.581 $ \\
-	\label{discrete variabelen afhankelijkheid}
-	%\caption{Afhankelijkheid van de prijs met alle niet continue variabelen}
-\end{tabular}
+	
+	
 
 
 	
@@ -151,13 +132,41 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 		\end{tabular}
 	\end{table}
 	\subsection{Gemiddelde kost}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	
 	\subsection{Associatie met de verschillende veranderlijken}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	
+	\begin{tabular}{c|c|c|c }
+		%\caption{Afhankelijkheid van de prijs met de continue variabelen.}
+		naam & p-waarde & afhankelijkheid & rho\\
+		\hline
+		\hline
+		dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
+		metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
+		attr &$ < 2.2\cdot 10^{-16}$& ja&$0.4314979 $ \\
+		rest &$ < 2.2\cdot 10^{-16}$& ja&$0.4276987 $ \\
+		satisfaction &$ 1.657\cdot 10^{-7}$& ja&$0.1664983 $ \\
+		
+		\label{continue variabelen afhankelijkheid}
+		
+	\end{tabular}
+	
+	\begin{tabular}{c|c|c|c }
+		naam & p-waarde & afhankelijkheid & $\chi ^2$\\
+		\hline
+		\hline
+		cleanliness & $0.7775$&nee& $5.6174$ \\
+		capacity &$ < 2.2\cdot 10^{-16}$& ja& $390.3$ \\ 
+		bedrooms &$ < 2.2\cdot 10^{-16}$& ja&$368.1 $ \\
+		room &$ < 2.2\cdot 10^{-16}$& ja&$ 337.29$ \\
+		host &$ 5.506\cdot 10^{-7}$& ja&$39.581 $ \\
+		\label{discrete variabelen afhankelijkheid}
+		%\caption{Afhankelijkheid van de prijs met alle niet continue variabelen}
+	\end{tabular}
+	
 	
 	\subsection{Verklaren van de kost}
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
