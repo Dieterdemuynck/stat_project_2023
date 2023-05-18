@@ -23,8 +23,8 @@ summary(airbnb)
 
 # 1: realSum
 # Kwantitatief, continu (positief)
-hist(log(realSum))
-summary(realSum)
+hist(log10(realSum))
+summary(log10(realSum))
 mean(realSum)
 median(realSum)
 sd(realSum)
@@ -32,7 +32,7 @@ range(realSum)
 plot(realSum) # 1 zeer duidelijke uitschieter
 boxplot(realSum)
 hist(realSum) # zeer rechtsscheef
-hist(log(realSum)) # iets "normaler" verdeeld
+hist(log10(realSum)) # iets "normaler" verdeeld
 
 # 2: room 
 # Kwalitatief, nominaal
@@ -62,7 +62,7 @@ barplot(table(bedrooms)/length(bedrooms))
 # 5: dist
 # Kwantitatief, continu (positief)
 hist(dist) # duidelijk rechtsscheef 
-hist(log(dist))  # duidelijk linksscheef
+hist(log10(dist))  # duidelijk linksscheef
 summary(dist)  # er zijn niet meteen uitschieters, behalve na de logtransf is er een lage waarde
 range(dist)
 range(dist)[2]-range(dist)[1]
@@ -71,7 +71,7 @@ cov(realSum, dist)  # sterk omgekeerd evenredig verband; (kleine afstand = hoge 
 # 6: metro
 # Kwantitatief, continu (positief)
 hist(metro) # rechtsscheef met meeste gegevens links (kleine afstand)
-hist(log(metro)) # lijkt een beetje normaal, maar heeft toch een kleine linkerstaart
+hist(log10(metro)) # lijkt een beetje normaal, maar heeft toch een kleine linkerstaart
 summary(metro)
 range(metro)     
 range(metro)[2]-range(metro)[1] # minder spreiding dan dist
@@ -80,7 +80,7 @@ cov(realSum, metro) # een kleinere afstand zal een hogere prijs met zich meetrek
 # 7: attr
 # Kwantitatief, continu (tussen 1 en 10)
 hist(attr) # zeer rechtsscheef
-hist(log(attr)) # minder rechtsscheef, maar nog steeds niet normaal
+hist(log10(attr)) # minder rechtsscheef, maar nog steeds niet normaal
 summary(attr)
 range(attr)
 range(attr)[2]- range(attr)[1] # de attr ligt per constructie tussen 1 en 10
@@ -89,7 +89,7 @@ cov(realSum, attr) # hoe hoger de attr score, hoe hoger de prijs
 # 8: rest
 # Kwantitatief, continu (tussen 1 en 10)
 hist(rest) # rechtsscheef
-hist(log(rest)) # symmetrisch met zware staarten
+hist(log10(rest)) # symmetrisch met zware staarten
 summary(rest)
 range(rest)
 range(rest)[2]- range(rest)[1] # de rest ligt per constructie tussen 1 en 10
@@ -261,6 +261,11 @@ cor.test(realSum, attr, method = c("spearman"), exact = FALSE)#waarschijnlijk af
 cor.test(realSum, rest, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
 cor.test(realSum, satisfaction, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 
+n = 977
+R = cor(realSum, metro, method='spearman')
+2*pt(abs(R*(sqrt(n-2))/sqrt(1-R^2)), 975, lower.tail = F)
+
+
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
 proper = cut(cleanliness, breaks = c(0, 7.5,8.5,9.5, 10.5), labels = c("2-7","8","9","10"))
 p = table(som, proper)
@@ -326,17 +331,58 @@ lines(sort(x_i2), betrouwb2[order(x_i2) ,2] , col = "blue")
 lines(sort(x_i2), betrouwb2[order(x_i2) ,3] , col = "blue")
 lines(sort(x_i2), predictie2[order(x_i2) ,2] , col = "green")
 lines(sort(x_i2), predictie2[order(x_i2) ,3] , col = "green")
-par((mfrow = c(1,1)))
+par(mfrow = c(1,1))
 
-model = lm(realSum~satisfaction + cleanliness  + rest + attr + metro + dist + bedrooms  + capacity)
+model = lm(realSum~satisfaction+rest+attr+metro+dist)
+summary(model)
+model = update(model ,.~. -rest )
 summary(model)
 model = update(model ,.~. -metro )
 summary(model)
-model = update(model ,.~. -cleanliness )
-summary(model)
-model = update(model ,.~. -attr )
-summary(model)
+
+par(mfrow = c(2,2))
+plot(model)
+par(mfrow = c(1,1))
 
 
+logmodel = lm(log10(realSum)~satisfaction+rest+attr+metro+dist)
+summary(logmodel)
+logmodel = update(logmodel ,.~. -rest )
+summary(logmodel)
 
+par(mfrow = c(2,2))
+plot(logmodel)
+par(mfrow = c(1,1))
+
+logattrmodel = lm(realSum~satisfaction+log10(attr)+dist)
+summary(logattrmodel)
+logattrmodel = update(model ,.~. -dist )
+summary(logattrmodel)#dit model verwerpen door een te lage adj R squared
+
+logrestmodel = lm(realSum~satisfaction+log10(rest)+attr+dist)
+summary(logrestmodel) #rest is zelf significant
+
+onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist)
+summary(onsmodel)
+
+par(mfrow = c(2,2))
+plot(onsmodel)
+par(mfrow = c(1,1))
+
+onsmodelzonderoutliers = lm(log10(realSum)~satisfaction+log10(attr)+dist, data = airbnb[-c(860),])
+summary(onsmodelzonderoutliers)
+
+par(mfrow = c(2,2))
+plot(onsmodelzonderoutliers)
+par(mfrow = c(1,1))#outlier heeft weinig effect
+
+onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist)
+summary(onsmodel)
+
+dommy = room == "volledige woning"
+table(dommy)
+onsmodel = update(onsmodel, .~.*dommy)
+summary(onsmodel)
+onsmodel = update(onsmodel, .~.-satisfaction:dommy)
+summary(onsmodel)#dit model is goed
 
