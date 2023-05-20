@@ -2,7 +2,7 @@
 clear_envir <- function() {rm(list = ls(.GlobalEnv)[ls(.GlobalEnv) != "airbnb" & ls(.GlobalEnv) != "clear_envir"], envir = .GlobalEnv)}
 
 ### 1) Gegevens inlezen en manipuleren #########################################
-
+#laat aub staan voor nu: ~/2e Bachelor/stat404/stat_project_2023/airbnb.csv
 airbnb <- read.csv2("airbnb.csv", sep="", stringsAsFactors=TRUE)
 range_attr  = max(airbnb$attr)-min(airbnb$attr)
 range_rest  = max(airbnb$rest)-min(airbnb$rest)
@@ -143,67 +143,42 @@ t.test(x= realSum, mu = 620) #cls geldig voor n = 977
 # Particuliere versus Professionele aanbieders
 part= as.numeric(table(host))[1]
 npart = as.numeric(table(host))[2] + as.numeric(table(host))[3]
-chisq.test(x= c(part, npart ))
-n = length(host[host=='enige beschikbare woning'])
-w = length(host[host!= 'enige beschikbare woning'])
-m = length(host)
-p0 = (n*(n/m)+ w*(w/m))/(n+w)
-pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
-pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)
+#chisq.test(x= c(part, npart ))
+prop.test(part, part+npart, 0.5, alternative = c("two.sided"))
+#prop.test(npart, part+npart, 0.5, alternative = c("two.sided"))
+#n = length(host[host=='enige beschikbare woning'])
+#w = length(host[host!= 'enige beschikbare woning'])
+#m = length(host)
+#p0 = (n*(n/m)+ w*(w/m))/(n+w)
+#pnorm( q = ((n/m)-0.5)/sqrt((1/4)/m), lower.tail= FALSE)
+#pnorm((n/m - w/m)/sqrt(p0*(1-p0)*(1/n + 1/w)), lower.tail = FALSE)    IS dit nog nodig?
+
 
 ## Test Poisson verdeling op beschikbare slaapkamers
 # Methode zoals op p.293-295
 lambda_hat  <- mean(bedrooms)  # Schatting lambda
-
-frequencies <- as.numeric(table(bedrooms))
-categories  <- as.numeric(names(table(bedrooms)))
-expected    <- dpois(categories, lambda=lambda_hat) * sum(frequencies)
-
-estimated_value_count <- 1
-degrees_of_freedom <- length(categories) - estimated_value_count - 1  # p.294
-
-# chi-kwadraat statistiek met als verwachte kansen die voor een poisson
-# verdeling met geschatte lambda == gemiddelde waarde
-chisq_bedrooms  <- sum((frequencies - expected)^2/expected)
-pvalue_bedrooms <- pchisq(q  = chisq_bedrooms,
-                          df = degrees_of_freedom,
-                          lower.tail = FALSE)
-print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
-# RESULTAAT: p-waarde erg klein, aan zekerheid grenzend NIET poisson verdeeld
-
-
-#controleren of de bedrooms poisson verdeeld zijn of niet: Mijn conclusie; ZEKER NIET
-
-lambda = mean(bedrooms)
-dpois(0:4, lambda)*length(bedrooms)
-
 nul = length(bedrooms[bedrooms == 0])
 een = length(bedrooms[bedrooms == 1])
 twee = length(bedrooms[bedrooms == 2])
 drie = length(bedrooms[bedrooms == 3])
 vier = length(bedrooms[bedrooms == 4 ]) + length(bedrooms[bedrooms == 5])
 #cochranregel nu wel voldaan
+frequencies <- c(nul, een , twee, drie, vier)
+categories  <- c(0, 1, 2, 3, 4)
+expected    <- dpois(categories, lambda=lambda_hat) * sum(frequencies)
+estimated_value_count <- 1
+degrees_of_freedom <- length(categories) - estimated_value_count - 1  # p.294
 
-
-
-chisq.test( c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE )
-#977 observaties==> chisq verwerpt zeer snel
-
-
-plot((0:4), c(nul, een , twee, drie, vier))
-plot((0:4), dpois(0:4, lambda))
-
-x1 = (nul-977*dpois(0, lambda))**2/(977*dpois(0, lambda))
-x2 = (een - 977*dpois(1, lambda))**2/(977*dpois(1, lambda))
-x3 = (twee - 977*dpois(2, lambda))**2/(977*dpois(2, lambda))
-x4 = (drie - 977*dpois(3, lambda))**2/(977*dpois(3, lambda))
-x5 = (vier - 977*dpois(4, lambda))**2/(977*dpois(4, lambda))
-sum(c(x1,x2,x3,x4,x5))
-
-pchisq(429.509, 3 , lower.tail = FALSE)
-
-chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE)
-chisq.test(c(nul, een , twee, drie, vier), p = dpois(0:4, lambda), rescale.p = TRUE)$residuals
+# chi-kwadraat statistiek met als verwachte kansen die voor een poisson
+# verdeling met geschatte lambda = gemiddelde waarde
+chisq_bedrooms  <- sum((frequencies - expected)^2/expected)
+pvalue_bedrooms <- pchisq(q = chisq_bedrooms, df = degrees_of_freedom, lower.tail = F)
+print("p-waarde: poisson verdeling bedrooms"); print(pvalue_bedrooms)
+# RESULTAAT: p-waarde erg klein.
+#Met aan zekerheid grenzende waarschijnlijkheid NIET poisson verdeeld.
+#veel korter:
+chisq.test(frequencies, p = dpois(0:4, lambda_hat), rescale.p = TRUE)
+#977 observaties ==> chisq verwerpt zeer snel
 
 
 ### 3.3.2 Gemiddelde kost
@@ -226,12 +201,14 @@ t.test(realSum[capacity==2 & cleanliness==10],
 length(na.omit(realSum[capacity==2 & host=="enige beschikbare woning"]))
 length(na.omit(realSum[capacity==2 & host!="enige beschikbare woning"]))
 # ==> CLS voldaan
-shapiro.test(realSum[capacity==2 & host=="enige beschikbare woning"])
-shapiro.test(realSum[capacity==2 & host!="enige beschikbare woning"])
+nclean = realSum[capacity==2 & host!="enige beschikbare woning"]
+clean = realSum[capacity==2 & host=="enige beschikbare woning"]
+qqnorm(clean); qqline(clean)
+qqnorm(nclean); qqline(nclean)
+shapiro.test(clean)
+shapiro.test(nclean)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(realSum[capacity==2 & host=="enige beschikbare woning"],
-       realSum[capacity==2 & host!="enige beschikbare woning"],
-       var.equal = FALSE)
+t.test(clean, nclean, var.equal = FALSE)
 # Op basis van de steekproef blijkt dat er een lichte aanwijzing is dat er een
 # verschil in kost zou zijn.
 
@@ -261,10 +238,22 @@ cor.test(realSum, attr, method = c("spearman"), exact = FALSE)#waarschijnlijk af
 cor.test(realSum, rest, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
 cor.test(realSum, satisfaction, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 
+#Hier wordt de correlatie tussen realSum en de andere variabele geplot
+
+plot(dist, realSum, xlab='Afstand tot het stadscentrum(km)', ylab='Totale kostprijs');abline(lm(realSum ~ dist), col = "red") 
+plot(metro, realSum, xlab='Afstand tot dichtstbijzijnde metro-halte (km)', ylab='Totale kostprijs');abline(lm(realSum ~ metro), col = "red")
+plot(attr, realSum, xlab='Attractiescore, nabijheid van bezienswaardigheden', ylab='Totale kostprijs');abline(lm(realSum ~ attr), col = "red")
+plot(rest, realSum, xlab='Restaurantscore, nabijheid van restaurants', ylab='Totale kostprijs');abline(lm(realSum ~ rest), col = "red")
+plot(satisfaction, realSum, xlab='Tevredenheid van de gasten (op 10)', ylab='Totale kostprijs');abline(lm(realSum ~ satisfaction), col = "red")
+plot(cleanliness, realSum, xlab='Modale score voor netheid van het verblijf volgensgasten (op 10)', ylab='Totale kostprijs');abline(lm(realSum ~ cleanliness), col = "red")
+plot(capacity, realSum, xlab='Maximaal aantal gasten', ylab='Totale kostprijs');abline(lm(realSum ~ capacity), col = "red")
+plot(bedrooms, realSum, xlab='Aantal beschikbare slaapkamers in het verblijf', ylab='Totale kostprijs');abline(lm(realSum ~ bedrooms), col = "red")
+plot(room, realSum, xlab ='Soort verblijf', ylab='Totale prijs')
+plot(host, realSum, xlab='Type verhuurder', ylab = 'Totale prijs')
+
 n = 977
 R = cor(realSum, metro, method='spearman')
 2*pt(abs(R*(sqrt(n-2))/sqrt(1-R^2)), 975, lower.tail = F)
-
 
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
 proper = cut(cleanliness, breaks = c(0, 7.5, 8.5, 9.5, 10.5), labels = c("2-7","8","9","10"))
