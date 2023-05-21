@@ -12,10 +12,7 @@ airbnb$lat  = NULL
 airbnb$lng  = NULL
 airbnb$room = factor(airbnb$room, levels = c(1,2,3), labels = c("volledige woning","afzonderlijke kamer", "gedeelde kamer"))
 airbnb$host = factor(airbnb$host, levels = c(0,1,2), labels = c("enige beschikbare woning", "2 tot 4 beschikbare woningen", "meer dan 4 beschikbare woningen"))
-
-clear_envir()
 attach(airbnb)
-
 
 ### 2) Gegevens verkennen #####################################################
 
@@ -214,29 +211,32 @@ t.test(enige, niet.enige, var.equal = FALSE)
 
 ## 3)
 # realSum met capacity 2 testen waarbij room == "volledige woning" of niet
-length(na.omit(realSum[capacity==2 & room=='volledige woning']))
-length(na.omit(realSum[capacity==2 & room!='volledige woning']))
+volledig = na.omit(realSum[capacity==2 & room=='volledige woning'])
+nnvolledig = na.omit(realSum[capacity==2 & room!='volledige woning'])
+length(volledig)
+length(nvolledig)
 # ==> CLS is voldaan
-shapiro.test(realSum[capacity==2 & room=='volledige woning'])
-shapiro.test(realSum[capacity==2 & room!='volledige woning'])
+shapiro.test(volledig)
+shapiro.test(nvolledig)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(realSum[capacity==2 & room=='volledige woning'],
-       realSum[capacity==2 & room!='volledige woning'],
-       var.equal = FALSE)
+t.test(volledig, nvolledig, var.equal = FALSE)
 # Er is met aan z.g.w. een verschil in de kosten.
-
 
 ### 3.3.3 associatie met de verschillende veranderlijken
 
 ###normaliteit nagaan
 
 shapiro.test(realSum)
-
+#realSum is duidelijk niet normaal verdeeld == > Spearman
 cor.test(realSum, dist, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 cor.test(realSum, metro, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 cor.test(realSum, attr, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
 cor.test(realSum, rest, method = c("spearman"), exact = FALSE)#waarschijnlijk afhankelijk
 cor.test(realSum, satisfaction, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
+#methode achter de correlatie-test
+n = 977
+R = cor(realSum, metro, method='spearman')
+2*pt(abs(R*(sqrt(n-2))/sqrt(1-R^2)), 975, lower.tail = F)
 
 #Hier wordt de correlatie tussen realSum en de andere variabele geplot
 
@@ -248,30 +248,28 @@ plot(satisfaction, realSum, xlab='Tevredenheid van de gasten (op 10)', ylab='Tot
 plot(cleanliness, realSum, xlab='Modale score voor netheid van het verblijf volgensgasten (op 10)', ylab='Totale kostprijs');abline(lm(realSum ~ cleanliness), col = "red")
 plot(capacity, realSum, xlab='Maximaal aantal gasten', ylab='Totale kostprijs');abline(lm(realSum ~ capacity), col = "red")
 plot(bedrooms, realSum, xlab='Aantal beschikbare slaapkamers in het verblijf', ylab='Totale kostprijs');abline(lm(realSum ~ bedrooms), col = "red")
-plot(room, realSum, xlab ='Soort verblijf', ylab='Totale prijs')
-plot(host, realSum, xlab='Type verhuurder', ylab = 'Totale prijs')
-
-n = 977
-R = cor(realSum, metro, method='spearman')
-2*pt(abs(R*(sqrt(n-2))/sqrt(1-R^2)), 975, lower.tail = F)
-
+plot(room, realSum, xlab ='Soort verblijf', ylab='Totale prijs');abline(lm(realSum ~ room), col = "red")
+plot(host, realSum, xlab='Type verhuurder', ylab = 'Totale prijs');abline(lm(realSum ~ host), col = "red")
+summary(lm(realSum ~ host))
+#discretiseren van veranderlijken voor de Cochran regel
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
+
 proper = cut(cleanliness, breaks = c(0, 7.5, 8.5, 9.5, 10.5), labels = c("2-7","8","9","10"))
 p = table(som, proper)
-chisq.test(p)
 chisq.test(p)$expected
-#capacity = cut(capacity, breaks = )
-cap = cut(capacity, breaks = c(-0.5, 2.5, 3.5, 4.5, 6.5), labels = c('Jos','Dirk', 'Anja', 'André'))
+chisq.test(p)
+
+cap = cut(capacity, breaks = c(-0.5, 2.5, 3.5, 4.5, 6.5), labels = c('Laag','Middellaag', 'Middelhoog', 'Hoog'))
 p = table(som, cap)
 chisq.test(p)$expected
 chisq.test(p)
 
-bed = cut(bedrooms, breaks = c(-0.5, 0.5, 1.5, 2.5, 6), labels = c('geef','da', 'deftige', 'namen'))
+bed = cut(bedrooms, breaks = c(-0.5, 0.5, 1.5, 2.5, 6), labels = c('Laag','Middellaag', 'Middelhoog', 'Hoog'))
 p = table(som, bed)
 chisq.test(p)$expected
 chisq.test(p)
 
-slagroom = cut(as.numeric(room),  breaks = c(0.5, 1.5, 3.5), labels = c('volledige woning', 'kamer'))
+slagroom = cut(as.numeric(room),  breaks = c(0.5, 1.5, 3.5), labels = c('volledige woning', 'kamers'))
 p = table(som, slagroom)
 chisq.test(p)$expected
 chisq.test(p)

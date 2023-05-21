@@ -29,14 +29,9 @@
 	Dit onderzoek focust op de totale kostprijs voor het huren van een Airbnb-verblijf in Amsterdam voor twee personen gedurende een weekend (vrijdag tot zondag). Er wordt nagegaan met welke factoren deze kostprijs samenhangt en in welke mate de kost daarmee kan worden voorspeld. Hierbij wordt er gebruik gemaakt van een aantal veranderlijken verzameld in het kader van een onderzoeksproject uitgevoerd door Kristóf Gyódi en Łukasz Nawaro. Het gaat enerzijds over kenmerken van het verblijf en tevredenheid van eerdere gasten volgens de gegevens van Airbnb, anderzijds over de ligging van het verblijf ten opzichte van het stadscentrum, bezienswaardigheden en restaurants, telkens rekening houdend met de populariteit, zoals gerapporteerd door TripAdvisor.\\
 	
 	Tabel \ref{beschrijving} beschrijft de variabelen en tabel \ref{uitreksel} geeft enkele basisstatistieken weer van de veranderlijken die gebruikt worden in het onderzoek. \\\\
+
 \begin{table}[h]
-		\begin{tabular}{r*{2}{|r}}
-			Veranderlijke & Uitkomst 1 & Uitkomst 2 \\ \hline
-			Aantal &            &            \\ \hline
-			Proportie &            &
-		\end{tabular}
-\end{table}
-\begin{table}[h]
+	\centering
 	\begin{tabular}{c|p{10cm}}
 		\raggedright
 		Naam & Beschrijving\\
@@ -99,9 +94,7 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	
 
 	\subsection{Associatie met de verschillende veranderlijken}
-	\begin{figure}
-		inhoud...
-	\end{figure}
+	
 
 	Verder wordt de associatie tussen \textbf{realsum} en de andere veranderlijken onderzocht. Aangezien \textbf{realsum} niet normaal verdeeld is (zie figuur \ref{fig:clean1}) en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie van de prijs met de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt gewerkt met de gediscretiseerde \textbf{realsum}. Ook de discrete en kwalitatieve variabele worden samengevoegd om zo goed mogelijk aan de Cochranregel te voldoen. Enkel \textbf{host} blijft onveranderd. \textbf{Realsum} wordt verdeeld volgens zijn $4$ kwantielen en de andere opdelingen zijn te vinden in tabel \ref{grenzen}\\\\
 	\begin{table}[h]
@@ -119,9 +112,7 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 			\label{grenzen}
 	\end{table}
 	\subsection{Verklaren van de kost}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
 	\section{Resultaten}
 	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
@@ -177,22 +168,34 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer. Met aan zekerheid grenzende waarschijnlijkheid kunnen we aannemen dat er meer particulier verhuurders zijn, het lijkt er dus op dat er een 'strenge' regulering is in Amsterdam. We kunnen ook met zeer grote waarschijnlijkheid aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
 	\subsection{Gemiddelde kost}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
 	\subsection{Associatie met de verschillende veranderlijken}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	Op basis van de steekproef zijn \textbf{attr}, \textbf{rest}, \textbf{capacity}, \textbf{room}, \textbf{host}, \textbf{bedrooms} en \textbf{satisfaction} positief gecorreleerd met \textbf{realsum}. Bij de continue variabelen kunnen we dit afleiden uit de rho en bij de andere kunnen enkel kijken naar de scatterplots. Daarentegen zijn \textbf{dist} en \textbf{metro} negatief gecorreleerd met de totale prijs. Dit is duidelijk uit de waarde van rho. Intuïtief is dit ook aanvaardbaar. Toegankelijkheid tot het stadscentrum en een metrohalte verhoogt de waarde van een verblijf.
 	
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/dist}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/attr}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/rest}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/metro}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/satis}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/cleanliness}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/bedrooms}
+	\includegraphics[width=0.49\linewidth]{../../../../Pictures/project.stat/capacity}
+	\caption{Scatterplots voor de totale prijs in functie van de andere veranderlijken}
+	\label{fig:scatter}
+\end{figure}
 	\subsection{Verklaren van de kost}
 	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
 	\section*{Besluit}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	
+	%hebben we deze tabel ergens nodig?
+	\begin{table}[h]
+		\begin{tabular}{r*{2}{|r}}
+			Veranderlijke & Uitkomst 1 & Uitkomst 2 \\ \hline
+			Aantal &            &            \\ \hline
+			Proportie &            &
+		\end{tabular}
+	\end{table}
 \end{document} 
