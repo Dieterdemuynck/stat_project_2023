@@ -185,31 +185,31 @@ chisq.test(frequencies, p = dpois(0:4, lambda_hat), rescale.p = TRUE)
 
 ## 1)
 # realSum met capacity 2 testen waarbij cleanliness == 10 of niet
-length(na.omit(realSum[capacity==2 & cleanliness==10]))
-length(na.omit(realSum[capacity==2 & cleanliness!=10]))
+clean = na.omit(realSum[capacity==2 & cleanliness==10])
+nclean = na.omit(realSum[capacity==2 & cleanliness!=10])
+length(clean)
+length(nclean)
 # ==> CLS is voldaan
-shapiro.test(realSum[capacity==2 & cleanliness==10])
-shapiro.test(realSum[capacity==2 & cleanliness!=10])
-# ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(realSum[capacity==2 & cleanliness==10],
-       realSum[capacity==2 & cleanliness!=10],
-       var.equal = FALSE)
-# Er blijkt een randgeval te zijn, geen conclusie.
-
-## 2)
-# realSum met capacity 2 testen waarbij host == "enige beschikbare woning" of niet
-length(na.omit(realSum[capacity==2 & host=="enige beschikbare woning"]))
-length(na.omit(realSum[capacity==2 & host!="enige beschikbare woning"]))
-# ==> CLS voldaan
-nclean = realSum[capacity==2 & host!="enige beschikbare woning"]
-clean = realSum[capacity==2 & host=="enige beschikbare woning"]
-qqnorm(clean); qqline(clean)
-qqnorm(nclean); qqline(nclean)
 shapiro.test(clean)
 shapiro.test(nclean)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
 t.test(clean, nclean, var.equal = FALSE)
-# Op basis van de steekproef blijkt dat er een lichte aanwijzing is dat er een
+# Er blijkt een randgeval te zijn, geen conclusie.
+
+## 2)
+# realSum met capacity 2 testen waarbij host == "enige beschikbare woning" of niet
+niet.enige = na.omit(realSum[capacity==2 & host!="enige beschikbare woning"])
+enige = na.omit(realSum[capacity==2 & host=="enige beschikbare woning"])
+length(enige)
+length(niet.enige)
+# ==> CLS voldaan
+qqnorm(enige); qqline(enige)
+qqnorm(niet.enige); qqline(niet.enige)
+shapiro.test(enige)
+shapiro.test(niet.enige)
+# ==> allebei met aan z.g.w. niet normaal verdeeld
+t.test(enige, niet.enige, var.equal = FALSE)
+# Op basis van de steekproef blijkt dat er een aanwijzing is dat er een
 # verschil in kost zou zijn.
 
 ## 3)
