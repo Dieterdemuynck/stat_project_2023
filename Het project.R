@@ -320,48 +320,58 @@ lines(sort(x_i2), predictie2[order(x_i2) ,2] , col = "green")
 lines(sort(x_i2), predictie2[order(x_i2) ,3] , col = "green")
 par(mfrow = c(1,1))
 
+
 model = lm(realSum~satisfaction+rest+attr+metro+dist)
 summary(model)
 model = update(model ,.~. -rest )
 summary(model)
 model = update(model ,.~. -metro )
-summary(model)
+summary(model)#Dit is een basismodel, maar zeer slecht
 
 par(mfrow = c(2,2))
 plot(model)
 par(mfrow = c(1,1))
 
 
+logattrmodel = lm(realSum~satisfaction+log10(attr)+rest+metro+dist)
+summary(logattrmodel)
+logattrmodel = update(model ,.~. -metro)
+summary(logattrmodel)#Dit verbetert het model
+
+
 logmodel = lm(log10(realSum)~satisfaction+rest+attr+metro+dist)
 summary(logmodel)
 logmodel = update(logmodel ,.~. -rest )
-summary(logmodel)
+summary(logmodel)#Dit is nog veel beter
+
+logmodel2 = update(logmodel , .~. -metro)
+summary(logmodel2)#het randgeval: metro is hier eens uitgesmeten.
+#Dit verlaagt de R-squared en is dus niet beter als model.
 
 par(mfrow = c(2,2))
 plot(logmodel)
 par(mfrow = c(1,1))
 
-logattrmodel = lm(realSum~satisfaction+log10(attr)+dist)
-summary(logattrmodel)
-logattrmodel = update(model ,.~. -dist )
-summary(logattrmodel)#dit model verwerpen door een te lage adj R squared
 
-logrestmodel = lm(realSum~satisfaction+log10(rest)+attr+dist)
-summary(logrestmodel) #rest is zelf significant
-
-onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist)
+onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist+metro+rest)
+summary(onsmodel) 
+onsmodel = update(onsmodel ,.~. -rest)
 summary(onsmodel)
+onsmodel = update(onsmodel ,.~. -metro)
+summary(onsmodel)#dit is het beste model, die we ter hand hebben
 
 par(mfrow = c(2,2))
 plot(onsmodel)
 par(mfrow = c(1,1))
+
 
 onsmodelzonderoutliers = lm(log10(realSum)~satisfaction+log10(attr)+dist, data = airbnb[-c(860),])
 summary(onsmodelzonderoutliers)
 
 par(mfrow = c(2,2))
 plot(onsmodelzonderoutliers)
-par(mfrow = c(1,1))#outlier heeft weinig effect
+par(mfrow = c(1,1))#outlier heeft weinig effect, we hoeven hem dus niet uit de dataset te werpen
+
 
 onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist)
 summary(onsmodel)
