@@ -193,8 +193,10 @@ length(nclean)
 shapiro.test(clean)
 shapiro.test(nclean)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(clean, nclean, var.equal = FALSE)
+result_1 = t.test(clean, nclean, var.equal = FALSE); result_1
 # Er blijkt een randgeval te zijn, geen conclusie.
+result_1$estimate
+as.numeric(diff(result_1$estimate))  # Verschil tussen gemiddelden
 
 ## 2)
 # realSum met capacity 2 testen waarbij host == "enige beschikbare woning" of niet
@@ -208,22 +210,27 @@ qqnorm(niet.enige); qqline(niet.enige)
 shapiro.test(enige)
 shapiro.test(niet.enige)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(enige, niet.enige, var.equal = FALSE)
+result_2 = t.test(enige, niet.enige, var.equal = FALSE); result_2
 # Op basis van de steekproef blijkt dat er een aanwijzing is dat er een
 # verschil in kost zou zijn.
+result_2$estimate
+as.numeric(diff(result_2$estimate))  # Verschil tussen gemiddelden
 
 ## 3)
 # realSum met capacity 2 testen waarbij room == "volledige woning" of niet
 volledig = na.omit(realSum[capacity==2 & room=='volledige woning'])
-nnvolledig = na.omit(realSum[capacity==2 & room!='volledige woning'])
+nvolledig = na.omit(realSum[capacity==2 & room!='volledige woning'])
 length(volledig)
 length(nvolledig)
 # ==> CLS is voldaan
 shapiro.test(volledig)
 shapiro.test(nvolledig)
 # ==> allebei met aan z.g.w. niet normaal verdeeld
-t.test(volledig, nvolledig, var.equal = FALSE)
+result_3 = t.test(volledig, nvolledig, var.equal = FALSE); result_3
 # Er is met aan z.g.w. een verschil in de kosten.
+result_3$estimate
+as.numeric(diff(result_3$estimate))  # Verschil tussen gemiddelden
+
 
 ### 3.3.3 associatie met de verschillende veranderlijken
 

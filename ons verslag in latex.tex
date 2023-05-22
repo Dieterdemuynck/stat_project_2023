@@ -90,8 +90,11 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	
 	\subsection{Gemiddelde kost}
 	
-	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van andere variabelen. Ten eerste 
-	
+	Hier zal de onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen.
+	De eerste te testen hypothese is dat deze prijs afhankelijk is van de netheidsscore. We testen hierbij het verschil tussen verblijven met en zonder de maximumscore voor netheid.
+	De tweede te testen hypothese is dat deze prijs verschilt naargelang de eigenaar slechts één verblijf aanbiedt, of meerdere.
+	De laatste te testen hypothese is dat deze prijs verschilt naargelang de volledige woning wordt verhuurd, of enkel een deel ervan.
+	Aangezien de variantie nooit gekend is, werden bij alle drie hypotheses eerst de normaliteit van de twee categorieën getest aan de hand van de Shapiro-Wilk-test, waarna een t-test wordt uitgevoerd voor twee gemiddelden bij verschillende varianties. Deze laatste test gebeurt omdat zal blijken dat de centrale limietstelling (CLS) voldaan zal zijn, maar de steekproefwaarden blijken af te wijken van normaliteit.
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
@@ -118,9 +121,48 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
 	\subsection{Kenmerken van de steekproef}
 De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We kwamen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, we kunnen dus aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
+	
 	\subsection{Gemiddelde kost}
 	
+	We merken uit de gegevens in tabel \ref{tab:intermediary_results_gemiddelde_kost} dat elke categorie minstens 200 datapunten bevat, waardoor we kunnen veronderstellen dat de centrale limietstelling (CLS) geldig is. Uit de resultaten van de Shapiro-Wilk-testen volgt ook dat we met aan zekerheid grenzende waarschijnlijkheid kunnen veronderstellen dat geen enkele categorie normaal verdeeld is.
 	
+	Uit de resultaten van de t-testen bij verschillende varianties in tabel \ref{tab:end_results_gemiddelde_kost} merken we dat er op basis van de steekproef met aan zekerheid grenzende waarschijnlijkheid een verschil bestaat tussen de gemiddelde kost voor een verblijf van twee personen bij verblijven waarbij de volledige woning wordt verhuurd ten opzichte van verblijven waar maar een deel wordt verhuurd, waarbij volledige woningen gemiddeld €185 duurder zijn. We merken ook dat er een redelijke aanwijzing is dat het aantal verblijven dat een gastheer verhuurt een verschil zou betekenen in prijs. Hierbij zijn verblijven bij gastheren met meerdere woningen gemiddeld ongeveer €52 goedkoper.
+	
+	Over het verschil in prijs voor twee personen voor verblijven met of zonder de maximum netheidsscore valt weinig te concluderen, aangezien de p-waarde net onder de verwerpingsgrens ligt. Dit zou toeval kunnen zijn, maar zou ook een aanwijzing kunnen zijn voor een werkelijk verschil in prijs, waarbij verblijven onder de maximum netheidsscore gemiddeld ongeveer €35 goedkoper zouden zijn.
+	
+	\begin{table}
+		\caption{Aantal datapunten, gemiddelde, en p-waarde van de Shapiro-Wilk-test (uitgevoerd op deze datapunten) van de kost voor een verblijf van 2 personen, gefilterd op bepaalde gegevens.}
+		\label{tab:intermediary_results_gemiddelde_kost}
+		\begin{tabular}{|l*{3}{|r}|}
+			\hline
+			Kost voor 2 personen bij ...        & Aantal & Gemiddelde & Shapiro-Wilk-test p-waarde \\ \hline
+			\hline
+			Maximumscore netheid                & 376    & $457.1111$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+			Niet maximumscore netheid           & 215    & $422.2669$ & $3.091 \cdot 10^{-12}$ \\ \hline
+			Gastheer verhuurt 1 woning          & 367    & $463.9553$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+			Gastheer verhuurt meerdere woningen & 224    & $412.4534$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+			Volledige woning wordt verhuurd     & 288    & $539.0370$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+			Deel van de woning wordt verhuurd   & 303    & $354.5165$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}
+		\caption{Verschil in gemiddelden, en p-waarde van de t-testen (bij verschillende varianties) op het verschil tussen twee categorieën van de kost van een verblijf voor twee personen.}
+		\label{tab:end_results_gemiddelde_kost}
+		\begin{tabular}{|l*{2}{|r}|}
+			\hline
+			Verschil in kost voor 2 personen tussen ...  & Verschil van gemiddelden
+			& t-test p-waarde \\ \hline
+			\hline
+			
+			Maximumscore netheid of niet                 & $34.84423$
+			& $0.03848$              \\ \hline
+			Gastheer verhuurt 1 woning of meerdere       & $51.50189$
+			& $0.002512$             \\ \hline
+			Gastheer verhuurt volledige woning of deel   & $184.5205$
+			& $< 2.2 \cdot 10^{-16}$ \\ \hline
+		\end{tabular}
+	\end{table}
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
@@ -155,8 +197,6 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 		\label{discrete variabelen afhankelijkheid}
 	\end{table}
 	
-	
-	
 	\subsection{Verklaren van de kost}
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
@@ -168,6 +208,11 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer. Met aan zekerheid grenzende waarschijnlijkheid kunnen we aannemen dat er meer particulier verhuurders zijn, het lijkt er dus op dat er een 'strenge' regulering is in Amsterdam. We kunnen ook met zeer grote waarschijnlijkheid aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
 	\subsection{Gemiddelde kost}
+	
+	% TODO: Discussion (planned for the morning of 23/05)
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
