@@ -2,7 +2,8 @@
 clear_envir <- function() {rm(list = ls(.GlobalEnv)[ls(.GlobalEnv) != "airbnb" & ls(.GlobalEnv) != "clear_envir"], envir = .GlobalEnv)}
 
 ### 1) Gegevens inlezen en manipuleren #########################################
-#laat aub staan voor nu: ~/2e Bachelor/stat404/stat_project_2023/airbnb.csv
+# Vergeet niet om de working directory aan te passen via setwd()!
+# Voor de teamleden: open het project.RProj bestand om de wd aan te passen!
 airbnb <- read.csv2("airbnb.csv", sep="", stringsAsFactors=TRUE)
 range_attr  = max(airbnb$attr)-min(airbnb$attr)
 range_rest  = max(airbnb$rest)-min(airbnb$rest)
@@ -12,6 +13,8 @@ airbnb$lat  = NULL
 airbnb$lng  = NULL
 airbnb$room = factor(airbnb$room, levels = c(1,2,3), labels = c("volledige woning","afzonderlijke kamer", "gedeelde kamer"))
 airbnb$host = factor(airbnb$host, levels = c(0,1,2), labels = c("enige beschikbare woning", "2 tot 4 beschikbare woningen", "meer dan 4 beschikbare woningen"))
+
+clear_envir()  # Verwijdert onnodige variabelen
 attach(airbnb)
 
 ### 2) Gegevens verkennen #####################################################
@@ -95,7 +98,7 @@ cov(realSum, rest) # er is duidelijk een positieve samenhang tussen de prijs en 
 # 9: host
 # Kwalitatief, ordinaal
 # Meeste verblijven hebben een gastheer die maar één woning ter beschikking heeft
-table(host)
+y = table(host)
 x = barplot(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", names.arg = c("1", "2-4", ">4"), col = c("snow2", "snow3", "snow4"), ylim = c(0,max(table(host))*1.15), space = 0)
 text(x, table(host)+30, labels = as.character(y))
 pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", labels = c("1", "2-4", ">4"))
