@@ -41,6 +41,8 @@ table(room) # zeer weinig gedeelde kamers
 table(room)/length(room)
 barplot(table(room))
 barplot(table(room)/length(room))
+plot(room,log10(realSum))
+plot(room,(realSum))
 
 # 3: capacity
 # Kwantitatief, discreet (positief)
@@ -50,7 +52,8 @@ hist(capacity)
 table(capacity)/length(capacity)
 barplot(table(capacity))
 barplot(table(capacity)/length(capacity))
-
+plot(capacity,realSum)
+plot(capacity,log10(realSum))
 # 4: bedrooms
 # Kwantitatief, discreet (positief)
 summary(bedrooms)
@@ -58,7 +61,8 @@ table(bedrooms)
 table(bedrooms)/length(bedrooms)
 barplot(table(bedrooms))
 barplot(table(bedrooms)/length(bedrooms))
-
+plot(bedrooms,realSum)
+plot(bedrooms, log10(realSum))
 # 5: dist
 # Kwantitatief, continu (positief)
 hist(dist) # duidelijk rechtsscheef 
