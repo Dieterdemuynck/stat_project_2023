@@ -41,6 +41,8 @@ table(room) # zeer weinig gedeelde kamers
 table(room)/length(room)
 barplot(table(room))
 barplot(table(room)/length(room))
+plot(room,log10(realSum))
+plot(room,(realSum))
 
 # 3: capacity
 # Kwantitatief, discreet (positief)
@@ -50,7 +52,8 @@ hist(capacity)
 table(capacity)/length(capacity)
 barplot(table(capacity))
 barplot(table(capacity)/length(capacity))
-
+plot(capacity,realSum)
+plot(capacity,log10(realSum))
 # 4: bedrooms
 # Kwantitatief, discreet (positief)
 summary(bedrooms)
@@ -58,7 +61,8 @@ table(bedrooms)
 table(bedrooms)/length(bedrooms)
 barplot(table(bedrooms))
 barplot(table(bedrooms)/length(bedrooms))
-
+plot(bedrooms,realSum)
+plot(bedrooms, log10(realSum))
 # 5: dist
 # Kwantitatief, continu (positief)
 hist(dist) # duidelijk rechtsscheef 
@@ -67,7 +71,8 @@ summary(dist)  # er zijn niet meteen uitschieters, behalve na de logtransf is er
 range(dist)
 range(dist)[2]-range(dist)[1]
 cov(realSum, dist)  # sterk omgekeerd evenredig verband; (kleine afstand = hoge prijs)
-
+plot(dist,realSum)
+plot(dist, log10(realSum))
 # 6: metro
 # Kwantitatief, continu (positief)
 hist(metro) # rechtsscheef met meeste gegevens links (kleine afstand)
@@ -76,7 +81,8 @@ summary(metro)
 range(metro)     
 range(metro)[2]-range(metro)[1] # minder spreiding dan dist
 cov(realSum, metro) # een kleinere afstand zal een hogere prijs met zich meetrekken, maar minder erg dan bij dist
-
+plot(metro,realSum)
+plot(metro, log10(realSum))
 # 7: attr
 # Kwantitatief, continu (tussen 1 en 10)
 hist(attr) # zeer rechtsscheef
@@ -85,6 +91,9 @@ summary(attr)
 range(attr)
 range(attr)[2]- range(attr)[1] # de attr ligt per constructie tussen 1 en 10
 cov(realSum, attr) # hoe hoger de attr score, hoe hoger de prijs
+plot(attr,realSum)
+plot(attr, log10(realSum))
+plot(log10(attr), log10(realSum))
 
 # 8: rest
 # Kwantitatief, continu (tussen 1 en 10)
@@ -94,7 +103,8 @@ summary(rest)
 range(rest)
 range(rest)[2]- range(rest)[1] # de rest ligt per constructie tussen 1 en 10
 cov(realSum, rest) # er is duidelijk een positieve samenhang tussen de prijs en de restaurantscore
-
+plot(rest,realSum)
+plot(rest, log10(realSum))
 # 9: host
 # Kwalitatief, ordinaal
 # Meeste verblijven hebben een gastheer die maar één woning ter beschikking heeft
@@ -102,7 +112,8 @@ y = table(host)
 x = barplot(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", names.arg = c("1", "2-4", ">4"), col = c("snow2", "snow3", "snow4"), ylim = c(0,max(table(host))*1.15), space = 0)
 text(x, table(host)+30, labels = as.character(y))
 pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een woning", labels = c("1", "2-4", ">4"))
-
+plot(host,realSum)
+plot(host, log10(realSum))
 # 10: cleanliness
 # Kwalitatief, ordinaal (tussen 1 en 10)
 # REDEN: modale score van 1-10, maar een 9 is niet per-se "properder" dan een 8,
@@ -112,7 +123,8 @@ pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een wo
 # Exponentieel verdeeld?
 table(cleanliness)
 hist(cleanliness, col = c("snow2", "snow3"))
-
+plot(cleanliness,realSum)
+plot(cleanliness, log10(realSum))
 # 11: satistfaction
 # Kwantitatief, continu (tussen 1 en 10)
 # REDEN: terwijl cleanliness kwalitatief zou zijn, lijkt satisfaction mij toch
@@ -123,6 +135,8 @@ hist(cleanliness, col = c("snow2", "snow3"))
 hist(satisfaction, breaks = 1:10, col = c("snow2", "snow3"))
 hist(airbnb[satisfaction>=7,11], breaks = seq(7, 10, 0.2), col = c("snow2", "snow3"), main = "Histogram van de satisfaction scores tussen 7 en 10")
 table(floor(satisfaction))
+plot(satisfaction,realSum)
+plot(satisfaction, log10(realSum))
 sd(realSum, capacity, bedrooms, dist, metro, attr, rest, cleanliness)
 sd(realSum)
 sd(capacity)
@@ -393,4 +407,6 @@ onsmodel = update(onsmodel, .~.*dommy)
 summary(onsmodel)
 onsmodel = update(onsmodel, .~.-satisfaction:dommy)
 summary(onsmodel)#dit model is goed
-
+par(mfrow = c(2,2))
+plot(onsmodel)
+par(mfrow = c(1,1))
