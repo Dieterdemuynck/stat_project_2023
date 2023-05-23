@@ -84,7 +84,7 @@
 \end{table}
 	
 	\section{Methode}
-	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	
 	\subsection{Kenmerken van de steekproef}
 Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977). Om na te gaan of het aandeel particuliere verhuurders groter is dan het aantal professionele verhuurders, hebben we van een $z$-test voor één proportie gebruikt.\\
  
@@ -100,8 +100,16 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-
-	Verder wordt de associatie tussen \textbf{realsum} en de andere veranderlijken onderzocht. Aangezien \textbf{realsum} niet normaal verdeeld is (zie figuur \ref{fig:clean1}) en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie van de prijs met de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt gewerkt met de gediscretiseerde \textbf{realsum}. Ook de discrete en kwalitatieve variabele worden samengevoegd om zo goed mogelijk aan de Cochranregel te voldoen. Enkel \textbf{host} blijft onveranderd. \textbf{Realsum} wordt verdeeld volgens zijn $4$ kwantielen en de andere opdelingen zijn te vinden in tabel \ref{grenzen}\\\\
+	Verder wordt de associatie tussen \textit{realsum} en de andere veranderlijken onderzocht. Aangezien \textit{realsum} niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie van de prijs met de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt gewerkt met de gediscretiseerde \textit{realsum}. Ook de discrete en kwalitatieve variabele worden samengevoegd om zo goed mogelijk aan de Cochranregel te voldoen. Enkel \textit{host} blijft onveranderd. \textit{Realsum} wordt verdeeld volgens zijn $4$ kwantielen en de andere opdelingen zijn te vinden in tabel \ref{grenzen}\\\\
+	
+	
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figuren/qqplotvrealSum}
+	\caption{Kwantielplot van \textit{realSum}.}
+	\label{fig:qqplotvrealsum}
+\end{figure}
+	
 	\begin{table}[h]
 		\centering
 			\begin{tabular}{c|c}
@@ -118,14 +126,12 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	\end{table}
 	\subsection{Verklaren van de kost}
 	
-	We zullen hier trachten \textit{realSum} te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van
-	de variabele \textit{attr}. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijke, $log_{10}$(\textit{attr}), een beter resultaat geeft, aangezien deze variabele rechtsscheef verdeeld is: skewness = 2,454883.
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken. Ten slotte wordt nog bestudeerd of de binaire variabele \textit{dummy}, \textit{room} == volledige woning, een
-	significante invloed heeft op het model.
+	We zullen hier trachten \textit{realSum} te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \textit{attr}. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\textit{attr}) en $log_{10}$(\textit{realSum}), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \textit{attr} $=$ $2,454883$ ; skewness \textit{realSum} $=6.496029$.\\
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken. Ten slotte wordt nog bestudeerd of de binaire variabele \textit{dummy}, \textit{room} == volledige woning, een significante invloed heeft op het model.
 	
 	
 	\section{Resultaten}
-	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	
 	\subsection{Kenmerken van de steekproef}
 De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We kwamen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, we kunnen dus aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
@@ -175,15 +181,16 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	
 	Uit tabel \ref{continue variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid concluderen dat \textit{realsum} afhankelijk is van elke continue variabele in de dataset. De bijhorende correlatie wordt geschat door rho.
 	\begin{table}[h]
+		\centering
 		\begin{tabular}{c|c|c|c }
 			naam & p-waarde & afhankelijkheid & rho\\
 			\hline
 			\hline
-			dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
-			metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
 			attr &$ < 2.2\cdot 10^{-16}$& ja&$0.4314979 $ \\
 			rest &$ < 2.2\cdot 10^{-16}$& ja&$0.4276987 $ \\
 			satisfaction &$ 1.657\cdot 10^{-7}$& ja&$0.1664983 $ \\
+			metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
+			dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
@@ -191,15 +198,16 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	Uit tabel \ref{discrete variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid besluiten dat \textit{realsum} afhankelijk is van: \textit{capacity}, \textit{bedrooms}, \textit{room} en \textit{host}. We kunnen ook met grote waarschijnlijkheid zeggen dat \textit{cleanliness} niet gecorreleerd is met \textit{realsum}. 
 	
 	\begin{table}[h]
+		\centering
 		\begin{tabular}{c|c|c|c }
 			naam & p-waarde & afhankelijkheid & $\chi ^2$\\
 			\hline
 			\hline
-			cleanliness & $0.7775$&nee& $5.6174$ \\
 			capacity &$ < 2.2\cdot 10^{-16}$& ja& $390.3$ \\ 
 			bedrooms &$ < 2.2\cdot 10^{-16}$& ja&$368.1 $ \\
 			room &$ < 2.2\cdot 10^{-16}$& ja&$ 337.29$ \\
 			host &$ 5.506\cdot 10^{-7}$& ja&$39.581 $ \\
+			cleanliness & $0.7775$&nee& $5.6174$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de discrete en kwalitatieve variabelen.}
 		\label{discrete variabelen afhankelijkheid}
@@ -207,17 +215,21 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	
 	\subsection{Verklaren van de kost}
 	
-<<<<<<< Updated upstream
-=======
 	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \textit{attr} in rekening gehouden wordt, bekomen we: 
-    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. \\\\
-    
-    Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}).
-	\\\\
+    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}).\\
 	
-	In het naïeve model gebruiken we alle continue veranderlijken om te prijs te voorspellen. Maar zoals eerder vermeld zal hier achterwaartse regressie op toegepast worden. De variabelen \textit{rest} en \textit{metro} zullen dus verwijderd worden, omdat deze niet met significante zekerheid \textit{realSum} voorspellen. De p-waarde van \textit{rest} is namelijk $0.759213$ onder de nulhypothese dat het onafhankelijk is met \textit{realSum}. De p-waarde van \textit{metro} onder diezelfde nulhypothese is $0.455561$. Bij deze tweede waarde is \textit{rest} al uit het model verwijderd. Uiteindelijk zijn de andere drie veranderlijken wel significant voorspellend. Het bekomen model ziet er dus als volgt uit: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. De bijhorende adjusted $R^2$ is zoals te zien in \ref{} tamelijk laag.\\\\
+	In het naïeve model gebruiken we alle continue veranderlijken om te prijs te voorspellen. Maar zoals eerder vermeld zal hier achterwaartse regressie op toegepast worden. De variabelen \textit{rest} en \textit{metro} zullen dus verwijderd worden, omdat deze niet met significante zekerheid \textit{realSum} voorspellen. De p-waarde van \textit{rest} is namelijk $0.759213$ onder de nulhypothese dat het onafhankelijk is met \textit{realSum}. De p-waarde van \textit{metro} onder diezelfde nulhypothese is $0.455561$. Bij deze tweede waarde is \textit{rest} al uit het model verwijderd. Uiteindelijk zijn de andere drie veranderlijken wel significant voorspellend. Het bekomen model ziet er dus als volgt uit: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. De bijhorende adjusted $R^2$ is zoals te zien in tabel \ref{rsq} tamelijk laag.\\
+	
+	In logattrmodel proberen we eens \textit{attr} te vervangen door zijn loggetransformeerde. Hier wordt enkel \textit{metro} verwijderd. De adjusted $R^2$ is helaas niet gestegen ten opzichte van naïefmodel. Dit is dus geen beter model. Onze zoektocht naar een optimaal voorspellend model gaat verder. \\
+	
+	Vanaf hier zullen alle modellen \textit{realSum} transformeren tot $log_{10}$(\textit{realSum}). Dit zal een merkbaar verschil maken in de voorspellende kracht van de modellen. Ten eerste worden alle veranderlijken gebruikt. \textit{rest} zal meteen niet significant blijken in logmodel. \textit{metro} is een randgeval ( p = $0.0449$) en zal dus eens verwijderd worden in logmodel2. Dit verlaagt de adjusted $R^2$ en de kwaliteit van het model. \\
+	
+	Tot slot combineren we alles tot onsmodel. Hier nemen we zowel van \textit{realSum} als van \textit{attr} de logtransformatie. \textit{Rest} en \textit{metro} zijn opnieuw niet significant en zullen niet voorkomen in onsmodel. 
+	
+	
 	
 	\begin{table}[h]
+		\centering
 		\begin{tabular}{c|c|c}
 		\centering
 		naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
@@ -230,15 +242,14 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 		 logmodel2 &$0.1911$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
 		  onsmodel &$0.2006$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
 		\end{tabular}
+		\caption{Alle gebruikte modellen met hun voorschrift.}
 		\label{rsq}
-		\caption{testlk}
 	\end{table}
 	
-	
->>>>>>> Stashed changes
+
 	
 	\section{Discussie}
-	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
+	
 	\subsection{Kenmerken van de steekproef}
 Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer. Met aan zekerheid grenzende waarschijnlijkheid kunnen we aannemen dat er meer particulier verhuurders zijn, het lijkt er dus op dat er een 'strenge' regulering is in Amsterdam. We kunnen ook met zeer grote waarschijnlijkheid aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
@@ -258,31 +269,59 @@ Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Op basis van de steekproef zijn \textbf{attr}, \textbf{rest}, \textbf{capacity}, \textbf{room}, \textbf{host}, \textbf{bedrooms} en \textbf{satisfaction} positief gecorreleerd met \textbf{realsum}. Bij de continue variabelen kunnen we dit afleiden uit de rho en bij de andere kunnen enkel kijken naar de scatterplots. Daarentegen zijn \textbf{dist} en \textbf{metro} negatief gecorreleerd met de totale prijs. Dit is duidelijk uit de waarde van rho. Intuïtief is dit ook aanvaardbaar. Toegankelijkheid tot het stadscentrum en een metrohalte verhoogt de waarde van een verblijf.
-	
+	Op basis van de steekproef zijn \textit{attr}, \textit{rest}, \textit{capacity}, \textit{room}, \textit{host}, \textit{bedrooms} en \textit{satisfaction} positief gecorreleerd met \textit{realsum}. Bij de continue variabelen kunnen we dit afleiden uit de rho en bij de andere kunnen enkel kijken naar de scatterplots. Daarentegen zijn \textit{dist} en \textit{metro} negatief gecorreleerd met de totale prijs. Dit is duidelijk uit de waarde van rho. Intuïtief is dit ook aanvaardbaar. Toegankelijkheid tot het stadscentrum en een metrohalte verhoogt de waarde van een verblijf.
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.49\linewidth]{Figuren/dist}
-	\includegraphics[width=0.49\linewidth]{Figuren/attr}
-	\includegraphics[width=0.49\linewidth]{Figuren/rest}
-	\includegraphics[width=0.49\linewidth]{Figuren/metro}
-	\includegraphics[width=0.49\linewidth]{Figuren/satis}
-	\includegraphics[width=0.49\linewidth]{Figuren/cleanliness}
-	\includegraphics[width=0.49\linewidth]{Figuren/bedrooms}
-	\includegraphics[width=0.49\linewidth]{Figuren/capacity}
-	\caption{Scatterplots voor de totale prijs in functie van de andere veranderlijken}
-	\label{fig:scatter}
+	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanattr}
+	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanrest}
+	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanbedrooms}
+	\includegraphics[width=0.49\linewidth]{Figuren/correlatievancapacity}
+	
+	\caption{Scatterplots voor \textit{realSum} in functie van de meest significante veranderlijken.}
+	\label{fig:correlatievanattr}
 \end{figure}
+
+
+
+
 	\subsection{Verklaren van de kost}
+	
+	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op onsmodel. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig: }.%hier moet nog een figuur
+	\\
+	Het uiteindelijke model heeft de volgende vorm:
+	\begin{equation}
+		log_{10}(\textit{realSum}) = 2.209482 + 0.046029\cdot \textit{satisfaction} + 0.402077\cdot log_{10}(\textit{attr}) -0.016323\cdot \textit{dist}
+	\end{equation} 
+
+ 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figuren/naiefmodel}
+	\caption{Het naïeve model}
+	\label{fig:naiefmodel}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figuren/onsmodel}
+	\caption{Het uiteindelijke model}
+	\label{fig:onsmodel}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figuren/betr.attr}
+	\caption{Het onderscheid tussen \textit{attr} en $log_{10}$(\textit{attr}).}
+	\label{fig:betr}
+\end{figure}
+
+
+	
 	
 	
 	\section*{Besluit}
-	%hebben we deze tabel ergens nodig?
-	\begin{table}[h]
-		\begin{tabular}{r*{2}{|r}}
-			Veranderlijke & Uitkomst 1 & Uitkomst 2 \\ \hline
-			Aantal &            &            \\ \hline
-			Proportie &            &
-		\end{tabular}
-	\end{table}
+	
+	
 \end{document} 
