@@ -237,6 +237,7 @@ as.numeric(diff(result_3$estimate))  # Verschil tussen gemiddelden
 ###normaliteit nagaan
 
 shapiro.test(realSum)
+qqnorm(realSum); qqline(realSum)
 #realSum is duidelijk niet normaal verdeeld == > Spearman
 cor.test(realSum, dist, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 cor.test(realSum, metro, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
