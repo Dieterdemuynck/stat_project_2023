@@ -19,6 +19,8 @@
 \usepackage{multicol}
 \usepackage{caption}
 \usepackage{tabularx,array}
+\usepackage{times}
+\usepackage{textcomp}
 \newcommand{\rood}[1]{\textcolor{red}{#1}}
 
 \begin{document}
@@ -138,9 +140,9 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	\begin{table}
 		\caption{Aantal datapunten, gemiddelde, en p-waarde van de Shapiro-Wilk-test (uitgevoerd op deze datapunten) van de kost voor een verblijf van 2 personen, gefilterd op bepaalde gegevens.}
 		\label{tab:intermediary_results_gemiddelde_kost}
-		\begin{tabular}{|l*{3}{|r}|}
+		\begin{tabular}{|l*{3}{|c}|}
 			\hline
-			Kost voor 2 personen bij ...        & Aantal & Gemiddelde & Shapiro-Wilk-test p-waarde \\ \hline
+			Kost voor 2 personen bij ...        & Aantal observaties & Gemiddelde prijs & Shapiro-Wilk-test p-waarde \\ \hline
 			\hline
 			Maximumscore netheid                & 376    & $457.1111$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
 			Niet maximumscore netheid           & 215    & $422.2669$ & $3.091 \cdot 10^{-12}$ \\ \hline
@@ -154,13 +156,13 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	\begin{table}
 		\caption{Verschil in gemiddelden, en p-waarde van de t-testen (bij verschillende varianties) op het verschil tussen twee categorieën van de kost van een verblijf voor twee personen.}
 		\label{tab:end_results_gemiddelde_kost}
-		\begin{tabular}{|l*{2}{|r}|}
+		\begin{tabular}{|l*{2}{|c}|}
 			\hline
 			Verschil in kost voor 2 personen tussen ...  & Verschil van gemiddelden
 			& t-test p-waarde \\ \hline
 			\hline
 			
-			Maximumscore netheid of niet                 & $34.84423$
+			Maximumscore voor netheid of niet                 & $34.84423$
 			& $0.03848$              \\ \hline
 			Gastheer verhuurt 1 woning of meerdere       & $51.50189$
 			& $0.002512$             \\ \hline
@@ -171,8 +173,8 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Uit tabel \ref{continue variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid concluderen dat \textbf{realsum} afhankelijk is van elke continue variabele in de dataset. De bijhorende correlatie wordt geschat door rho.
-	\begin{table}
+	Uit tabel \ref{continue variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid concluderen dat \textit{realsum} afhankelijk is van elke continue variabele in de dataset. De bijhorende correlatie wordt geschat door rho.
+	\begin{table}[h]
 		\begin{tabular}{c|c|c|c }
 			naam & p-waarde & afhankelijkheid & rho\\
 			\hline
@@ -186,7 +188,8 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
 	\end{table}
-	Uit tabel \ref{discrete variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid besluiten dat \textbf{realsum} afhankelijk is van: \textbf{capacity}, \textbf{bedrooms}, \textbf{room} en \textbf{host}. We kunnen ook met grote waarschijnlijkheid zeggen dat \textbf{cleanliness} niet gecorreleerd is met \textbf{realsum}. 
+	Uit tabel \ref{discrete variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid besluiten dat \textit{realsum} afhankelijk is van: \textit{capacity}, \textit{bedrooms}, \textit{room} en \textit{host}. We kunnen ook met grote waarschijnlijkheid zeggen dat \textit{cleanliness} niet gecorreleerd is met \textit{realsum}. 
+	
 	\begin{table}[h]
 		\begin{tabular}{c|c|c|c }
 			naam & p-waarde & afhankelijkheid & $\chi ^2$\\
@@ -204,6 +207,35 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	
 	\subsection{Verklaren van de kost}
 	
+<<<<<<< Updated upstream
+=======
+	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \textit{attr} in rekening gehouden wordt, bekomen we: 
+    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. \\\\
+    
+    Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}).
+	\\\\
+	
+	In het naïeve model gebruiken we alle continue veranderlijken om te prijs te voorspellen. Maar zoals eerder vermeld zal hier achterwaartse regressie op toegepast worden. De variabelen \textit{rest} en \textit{metro} zullen dus verwijderd worden, omdat deze niet met significante zekerheid \textit{realSum} voorspellen. De p-waarde van \textit{rest} is namelijk $0.759213$ onder de nulhypothese dat het onafhankelijk is met \textit{realSum}. De p-waarde van \textit{metro} onder diezelfde nulhypothese is $0.455561$. Bij deze tweede waarde is \textit{rest} al uit het model verwijderd. Uiteindelijk zijn de andere drie veranderlijken wel significant voorspellend. Het bekomen model ziet er dus als volgt uit: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. De bijhorende adjusted $R^2$ is zoals te zien in \ref{} tamelijk laag.\\\\
+	
+	\begin{table}[h]
+		\begin{tabular}{c|c|c}
+		\centering
+		naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
+		\hline
+		 simpelmodel1 & $0.07109$ & \textit{realSum} $\sim$ \textit{attr}\\
+		 simpelmodel2 &$0.1752$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
+		naïefmodel & $0.09559$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
+		 logattrmodel &$0.09559$ & \textit{realSum} $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{rest}$+$\textit{dist}\\
+		 logmodel &$0.1936$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{metro}$+$\textit{dist}\\
+		 logmodel2 &$0.1911$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
+		  onsmodel &$0.2006$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
+		\end{tabular}
+		\label{rsq}
+		\caption{testlk}
+	\end{table}
+	
+	
+>>>>>>> Stashed changes
 	
 	\section{Discussie}
 	\rood{Deze sectie telt hoogstens één pagina (exclusief figuren en tabellen).}
