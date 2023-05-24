@@ -335,13 +335,13 @@ par(mfrow = c(1,1))
 
 naiefmodel = lm(realSum~satisfaction+rest+attr+metro+dist)
 summary(naiefmodel)
-model = update(naiefmodel ,.~. -rest )
+naiefmodel = update(naiefmodel ,.~. -rest )
 summary(naiefmodel)
-model = update(naiefmodel ,.~. -metro )
+naiefmodel = update(naiefmodel ,.~. -metro )
 summary(naiefmodel)#Dit is een basismodel, maar zeer slecht
 
 par(mfrow = c(2,2))
-plot(model)
+plot(naiefmodel)
 par(mfrow = c(1,1))
 
 
