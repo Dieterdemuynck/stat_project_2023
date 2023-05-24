@@ -86,9 +86,9 @@
 	\section{Methode}
 	
 	\subsection{Kenmerken van de steekproef}
-Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977). Om na te gaan of het aandeel particuliere verhuurders groter is dan het aantal professionele verhuurders, hebben we van een $z$-test voor één proportie gebruikt.\\
+	Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977). Om na te gaan of het aandeel particuliere verhuurders groter is dan het aantal professionele verhuurders, hebben we van een $z$-test voor één proportie gebruikt.\\
  
- We zijn via een $\chi ^2$-test nagegaan of het aantal beschikbare kamers Poisson verdeeld is. Dit deden we nadat we data bij elkaar hebben gegooid, om aan de Cochranregel te voldoen.
+	We zijn via een $\chi ^2$-test nagegaan of het aantal beschikbare kamers Poisson verdeeld is. Dit deden we nadat we data bij elkaar hebben gegooid, om aan de Cochranregel te voldoen.
 	
 	\subsection{Gemiddelde kost}
 	
@@ -102,14 +102,13 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	
 	Verder wordt de associatie tussen \textit{realsum} en de andere veranderlijken onderzocht. Aangezien \textit{realsum} niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie van de prijs met de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt gewerkt met de gediscretiseerde \textit{realsum}. Ook de discrete en kwalitatieve variabele worden samengevoegd om zo goed mogelijk aan de Cochranregel te voldoen. Enkel \textit{host} blijft onveranderd. \textit{Realsum} wordt verdeeld volgens zijn $4$ kwantielen en de andere opdelingen zijn te vinden in tabel \ref{grenzen}\\\\
 	
-	
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figuren/qqplotvrealSum}
-	\caption{Kwantielplot van \textit{realSum}.}
-	\label{fig:qqplotvrealsum}
-\end{figure}
-	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figuren/qqplotvrealSum}
+		\caption{Kwantielplot van \textit{realSum}.}
+		\label{fig:qqplotvrealsum}
+	\end{figure}
+
 	\begin{table}[h]
 		\centering
 			\begin{tabular}{c|c}
@@ -133,7 +132,7 @@ Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik
 	\section{Resultaten}
 	
 	\subsection{Kenmerken van de steekproef}
-De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We kwamen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, we kunnen dus aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
+	De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We kwamen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, we kunnen dus aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
 	\subsection{Gemiddelde kost}
 	
@@ -251,7 +250,7 @@ De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro w
 	\section{Discussie}
 	
 	\subsection{Kenmerken van de steekproef}
-Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer. Met aan zekerheid grenzende waarschijnlijkheid kunnen we aannemen dat er meer particulier verhuurders zijn, het lijkt er dus op dat er een 'strenge' regulering is in Amsterdam. We kunnen ook met zeer grote waarschijnlijkheid aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
+	Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van een kamer. Met aan zekerheid grenzende waarschijnlijkheid kunnen we aannemen dat er meer particulier verhuurders zijn, het lijkt er dus op dat er een 'strenge' regulering is in Amsterdam. We kunnen ook met zeer grote waarschijnlijkheid aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
 	
 	\subsection{Gemiddelde kost}
 	
@@ -271,16 +270,16 @@ Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van
 	
 	Op basis van de steekproef zijn \textit{attr}, \textit{rest}, \textit{capacity}, \textit{room}, \textit{host}, \textit{bedrooms} en \textit{satisfaction} positief gecorreleerd met \textit{realsum}. Bij de continue variabelen kunnen we dit afleiden uit de rho en bij de andere kunnen enkel kijken naar de scatterplots. Daarentegen zijn \textit{dist} en \textit{metro} negatief gecorreleerd met de totale prijs. Dit is duidelijk uit de waarde van rho. Intuïtief is dit ook aanvaardbaar. Toegankelijkheid tot het stadscentrum en een metrohalte verhoogt de waarde van een verblijf.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanattr}
-	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanrest}
-	\includegraphics[width=0.49\linewidth]{Figuren/correlatievanbedrooms}
-	\includegraphics[width=0.49\linewidth]{Figuren/correlatievancapacity}
-	
-	\caption{Scatterplots voor \textit{realSum} in functie van de meest significante veranderlijken.}
-	\label{fig:correlatievanattr}
-\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.49\linewidth]{Figuren/correlatievanattr}
+		\includegraphics[width=0.49\linewidth]{Figuren/correlatievanrest}
+		\includegraphics[width=0.49\linewidth]{Figuren/correlatievanbedrooms}
+		\includegraphics[width=0.49\linewidth]{Figuren/correlatievancapacity}
+		
+		\caption{Scatterplots voor \textit{realSum} in functie van de meest significante veranderlijken.}
+		\label{fig:correlatievanattr}
+	\end{figure}
 
 
 
@@ -295,27 +294,26 @@ Op basis van de steekproef lijkt er geen verandering te zijn in de kostprijs van
 	\end{equation} 
 
  
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figuren/naiefmodel}
-	\caption{Het naïeve model}
-	\label{fig:naiefmodel}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figuren/onsmodel}
-	\caption{Het uiteindelijke model}
-	\label{fig:onsmodel}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figuren/betr.attr}
-	\caption{Het onderscheid tussen \textit{attr} en $log_{10}$(\textit{attr}).}
-	\label{fig:betr}
-\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figuren/naiefmodel}
+		\caption{Het naïeve model}
+		\label{fig:naiefmodel}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figuren/onsmodel}
+		\caption{Het uiteindelijke model}
+		\label{fig:onsmodel}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figuren/betr.attr}
+		\caption{Het onderscheid tussen \textit{attr} en $log_{10}$(\textit{attr}).}
+		\label{fig:betr}
+	\end{figure}
 
 
 	
