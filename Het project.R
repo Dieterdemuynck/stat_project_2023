@@ -230,6 +230,8 @@ shapiro.test(nvolledig)
 result_3 = t.test(volledig, nvolledig, var.equal = FALSE); result_3
 # Er is met aan z.g.w. een verschil in de kosten.
 result_3$estimate
+mean(volledig)
+mean(nvolledig)
 as.numeric(diff(result_3$estimate))  # Verschil tussen gemiddelden
 
 
