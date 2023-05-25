@@ -86,21 +86,17 @@
 	\section{Methode}
 	
 	\subsection{Kenmerken van de steekproef}
-	Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977). Om na te gaan of het aandeel particuliere verhuurders groter is dan het aantal professionele verhuurders, hebben we van een $z$-test voor één proportie gebruikt.\\
- 
-	We zijn via een $\chi ^2$-test nagegaan of het aantal beschikbare kamers Poisson verdeeld is. Dit deden we nadat we data bij elkaar hebben gegooid, om aan de Cochranregel te voldoen.
+	Om te testen of de gemiddelde kost veranderd is tegenover 2019, maken we gebruik van een student t-test voor één gemiddelde. We mogen deze gebruiken, want de dataset voldoet aan de centrale limietstelling (n = 977). Om na te gaan of het aandeel particuliere verhuurders groter is dan het aantal professionele verhuurders, maken we gebruik van een $z$-test voor één proportie.\\
+	Via een $\chi^2_{3}$-test gaan we na of het aantal beschikbare kamers Poisson verdeeld is. Dit deden we nadat we data bij elkaar hebben gegooid, om aan de Cochranregel te voldoen.
 	
 	\subsection{Gemiddelde kost}
 	
 	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen.
-	De eerste hypothese is dat de totale prijs afhankelijk is van het al dan niet behalen van de maximale netheidsscore. We testen hierbij het verschil tussen verblijven met en zonder de maximumscore voor netheid.
-	De tweede hypothese is dat deze prijs verschilt naargelang de eigenaar slechts één verblijf aanbiedt, of meerdere.
-	De laatste hypothese is dat de prijs verschilt naargelang de volledige woning wordt verhuurd, of enkel een deel ervan.
-	Aangezien de variantie nooit gekend is, werd bij alle drie de hypotheses eerst de normaliteit van de twee categorieën getest aan de hand van de Shapiro-Wilk-test. Hierna wordt een t-test voor twee gemiddelden bij verschillende varianties uitgevoerd. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is, alhoewel de steekproefwaarden blijken af te wijken van normaliteit.
+	Aangezien de variantie bij alle onderzochte variabelen nooit gekend is, werd bij alle drie de vragen eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de vragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Verder wordt de associatie tussen de kost van een verblijf en de andere gegevens onderzocht. Aangezien \verb|realSum| niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt getest of de Spearman rangcorrelatie tussen de prijs en de continue variabelen significant van nul verschilt. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt de variabele \verb|realSum| gediscretiseerd. Ook de discrete en kwalitatieve variabele worden samengevoegd om aan de Cochranregel te voldoen. Enkel \verb|host| blijft onveranderd. \verb|realSum| wordt verdeeld in de vier kwantielen en de andere opdelingen zijn te vinden in tabel \ref{tab:grenzen}. \\\\
+	Verder wordt de associatie tussen de kost van een verblijf en de andere gegevens onderzocht. Aangezien \verb|realSum| niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt de associatie tussen \verb|realSum| en de continue variabelen getest aan de hand van de Spearman-correlatietest. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt de variabele \verb|realSum| gediscretiseerd, door deze op te delen in zijn vier kwantielen. Ook de discrete en kwalitatieve variabele worden samengevoegd om aan de Cochranregel te voldoen. Enkel \verb|host| blijft onveranderd. De opdelingen zijn te vinden in tabel \ref{tab:grenzen}. \\\\
 	
 	\begin{figure}
 		\centering
@@ -126,7 +122,7 @@
 	\subsection{Verklaren van de kost}
 	
 	We zullen hier trachten \textit{realSum} te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \textit{attr}. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\textit{attr}) en $log_{10}$(\textit{realSum}), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \textit{attr} $=$ $2,454883$ ; skewness \textit{realSum} $=6.496029$.\\
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken. Ten slotte wordt nog bestudeerd of de binaire variabele \textit{dummy}, \textit{room} == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht, dit doen we aan de hand van ingebouwde functies in R. 
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \textit{dummy}, \textit{room} == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht, dit doen we aan de hand van ingebouwde functies in R. 
 	
 	
 	\section{Resultaten}
