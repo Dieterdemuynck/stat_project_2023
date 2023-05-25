@@ -91,8 +91,8 @@
 	
 	\subsection{Gemiddelde kost}
 	
-	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen.
-	Aangezien de variantie bij alle onderzochte variabelen nooit gekend is, werd bij alle drie de vragen eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de vragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
+	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen, namelijk als de netheid maximaal is of niet, de eigenaar een particuliere verhuurder is of niet en of de volledig woning verhuurd wordt.
+	Aangezien de variantie bij alle onderzochte variabelen nooit gekend is, werd bij alle drie de vragen eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. We mogen deze test gebruiken aangezien voor elke variabele $n$ groot genoeg is (zie tabel \ref{tab:intermediary_results_gemiddelde_kost}). Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de vragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
@@ -128,15 +128,13 @@
 	\section{Resultaten}
 	
 	\subsection{Kenmerken van de steekproef}
-	De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We kwamen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, we kunnen dus aannemen dat het aantal beschikbare kamers niet Poisson verdeeld is.
+	De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We komen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, een zeer lage p-waarde voor de verdeling. We zullen de hypothese dus verwerpen.
 	
 	\subsection{Gemiddelde kost}
+	 Uit de resultaten van de Shapiro-Wilk-testen, te zien in tabel \ref{tab:intermediary_results_gemiddelde_kost}, volgt ook dat we met aan zekerheid grenzende waarschijnlijkheid kunnen veronderstellen dat geen enkele categorie normaal verdeeld is.
 	
-	We merken uit de gegevens in tabel \ref{tab:intermediary_results_gemiddelde_kost} dat elke categorie minstens 200 datapunten bevat, waardoor we kunnen veronderstellen dat de centrale limietstelling (CLS) geldig is. Uit de resultaten van de Shapiro-Wilk-testen volgt ook dat we met aan zekerheid grenzende waarschijnlijkheid kunnen veronderstellen dat geen enkele categorie normaal verdeeld is.
-	
-	Uit de resultaten van de t-testen bij verschillende varianties in tabel \ref{tab:end_results_gemiddelde_kost} merken we dat er op basis van de steekproef met aan zekerheid grenzende waarschijnlijkheid een verschil bestaat tussen de gemiddelde kost voor een verblijf van twee personen bij verblijven waarbij de volledige woning wordt verhuurd ten opzichte van verblijven waar maar een deel wordt verhuurd, waarbij volledige woningen gemiddeld €185 duurder zijn. We merken ook dat er een redelijke aanwijzing is dat het aantal verblijven dat een gastheer verhuurt een verschil zou betekenen in prijs. Hierbij zijn verblijven bij gastheren met meerdere woningen gemiddeld ongeveer €52 goedkoper.
-	
-	Over het verschil in prijs voor twee personen voor verblijven met of zonder de maximum netheidsscore valt weinig te concluderen, aangezien de p-waarde net onder de verwerpingsgrens ligt. Dit zou toeval kunnen zijn, maar zou ook een aanwijzing kunnen zijn voor een werkelijk verschil in prijs, waarbij verblijven onder de maximum netheidsscore gemiddeld ongeveer €35 goedkoper zouden zijn.
+	Uit de resultaten van de t-testen bij verschillende varianties in tabel \ref{tab:end_results_gemiddelde_kost}, zien we een zeer lage p-waarde voor de gemiddelde kost van het verhuren van de volledige woning of niet. De gemiddeldes, respectievelijk 539 euro en 355 euro, hebben een verschil van ongeveer 185 euro. We merken ook dat er een redelijke aanwijzing is dat het aantal verblijven dat een gastheer verhuurt een verschil zou betekenen in prijs. Hierbij zijn verblijven bij gastheren met meerdere woningen gemiddeld ongeveer €52 goedkoper.
+	De p-waarde bij het onderzoeken van de netheidsscore ligt net onder de verwerpingsgrens. Dit kan toeval zijn, maar het zou ook een aanwijzing kunnen zijn voor een werkelijk verschil in prijs, waarbij verblijven onder de maximum netheidsscore gemiddeld ongeveer €35 goedkoper zouden zijn.
 	
 	\begin{table}
 		\caption{Aantal datapunten, gemiddelde, en p-waarde van de Shapiro-Wilk-test (uitgevoerd op deze datapunten) van de kost voor een verblijf van 2 personen, gefilterd op bepaalde gegevens.}
@@ -174,7 +172,7 @@
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Uit tabel \ref{continue variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid concluderen dat \textit{realsum} afhankelijk is van elke continue variabele in de dataset. De bijhorende correlatie wordt geschat door rho.
+	Uit tabel \ref{continue variabelen afhankelijkheid} halen we de p-waarde bij de afhankelijkheidstest voor elke continue variabele met \textit{realSum}, we zien dat deze allemaal zeer klein zijn. De bijhorende correlatie wordt geschat door rho.
 	\begin{table}[h]
 		\centering
 		\begin{tabular}{c|c|c|c }
@@ -190,7 +188,7 @@
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
 	\end{table}
-	Uit tabel \ref{discrete variabelen afhankelijkheid} kunnen we met aan zekerheid grenzende waarschijnlijkheid besluiten dat \textit{realsum} afhankelijk is van: \textit{capacity}, \textit{bedrooms}, \textit{room} en \textit{host}. We kunnen ook met grote waarschijnlijkheid zeggen dat \textit{cleanliness} niet gecorreleerd is met \textit{realsum}. 
+	In tabel \ref{discrete variabelen afhankelijkheid} zien we dat de p-waardes voor onze $\chi^2$-test \textit{capacity}, \textit{bedrooms}, \textit{room} en \textit{host} zeer laag zijn terwijl deze voor \textit{cleanliness} eerder aan de hoge kant is. Het lijkt er op dat er geen of toch een zeer zwakke correlatie is tussen cleanliness en \textit{realSum}.
 	
 	\begin{table}[h]
 		\centering
@@ -211,9 +209,8 @@
 	\subsection{Verklaren van de kost}
 	
 	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \textit{attr} in rekening gehouden wordt, bekomen we: 
-    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}).\\
-	
-	In het naïeve model gebruiken we alle continue veranderlijken om te prijs te voorspellen. Maar zoals eerder vermeld zal hier achterwaartse regressie op toegepast worden. De variabelen \textit{rest} en \textit{metro} zullen dus verwijderd worden, omdat deze niet met significante zekerheid \textit{realSum} voorspellen. De p-waarde van \textit{rest} is namelijk $0.759213$ onder de nulhypothese dat het onafhankelijk is met \textit{realSum}. De p-waarde van \textit{metro} onder diezelfde nulhypothese is $0.455561$. Bij deze tweede waarde is \textit{rest} al uit het model verwijderd. Uiteindelijk zijn de andere drie veranderlijken wel significant voorspellend. Het bekomen model ziet er dus als volgt uit: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. De bijhorende adjusted $R^2$ is zoals te zien in tabel \ref{rsq} tamelijk laag. De residuen zijn gemiddeld ongeveer 0, het grote verschil, te zien op figuur \ref{fig:residuplotsnaief}, in de uiteinden komt omdat er weinig meetwaarden zijn. We zien tevens dat de grootteorde van de afwijking ook niet constant is, zelfs in de grote puntenwolk zien we een stijgende lijn. Kijken we naar het Q-Q-plot van de residuen (\ref{fig:residuplotsnaief}), dan zien we al sterk afwijkende staarten en de fit lijkt systematisch te onderschatten, te overschatten en dan weer te onderschatten. De residuen lijken dus niet normaal verdeeld te zijn. \\
+    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}). De adjusted $R^2$ zijn te zien in tabel \ref{rsq}.\\
+	Na het toepassen van achterwaartse regressie op ons naïef model, met alle continue variabelen, bekomen we het volgende model: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. De bijhorende adjusted $R^2$ is, zoals te zien in tabel \ref{rsq}, tamelijk laag. De residuen zijn gemiddeld ongeveer 0 (zie figuur \ref{fig:residuplotsnaief}). We zien duidelijk dat de grootteorde van de afwijking ook niet constant is, zelfs in de grote puntenwolk zien we een stijgende lijn. Kijken we naar het Q-Q-plot van de residuen (\ref{fig:residuplotsnaief}), dan zien we al sterk afwijkende staarten en de fit lijkt systematisch te onderschatten, te overschatten en dan weer te onderschatten. De residuen lijken dus niet normaal verdeeld te zijn. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{Figuren/residuplotsnaief}
@@ -221,11 +218,10 @@
 	\label{fig:residuplotsnaief}
 \end{figure}
 	
-	In logattrmodel proberen we eens \textit{attr} te vervangen door zijn loggetransformeerde. Hier wordt enkel \textit{metro} verwijderd. De adjusted $R^2$ is helaas niet gestegen ten opzichte van naïefmodel. Dit is dus geen beter model. Onze zoektocht naar een optimaal voorspellend model gaat verder. \\
+	In "logattrmodel" proberen we eens \textit{attr} te vervangen door zijn loggetransformeerde. We zien geen significant verschil (te zien in de $R^2$-waarde) met het naieve model. Onze zoektocht naar een optimaal voorspellend model gaat verder. \\
+	Vanaf hier zullen alle modellen \textit{realSum} transformeren tot $log_{10}$(\textit{realSum}). Dit zal een merkbaar verschil maken in de voorspellende kracht van de modellen. Ten eerste worden alle continue veranderlijken gebruikt. \textit{metro} is een randgeval ( p = $0.0449$) in ons eerste "logmodel" en zal dus eens verwijderd worden in logmodel2. Dit verlaagt de adjusted $R^2$ en de kwaliteit van het model. \\
 	
-	Vanaf hier zullen alle modellen \textit{realSum} transformeren tot $log_{10}$(\textit{realSum}). Dit zal een merkbaar verschil maken in de voorspellende kracht van de modellen. Ten eerste worden alle veranderlijken gebruikt. \textit{rest} zal meteen niet significant blijken in logmodel. \textit{metro} is een randgeval ( p = $0.0449$) en zal dus eens verwijderd worden in logmodel2. Dit verlaagt de adjusted $R^2$ en de kwaliteit van het model. \\
-	
-	Tot slot combineren we alles tot onsmodel. Hier nemen we zowel van \textit{realSum} als van \textit{attr} de logtransformatie. \textit{Rest} en \textit{metro} zijn opnieuw niet significant en zullen niet voorkomen in onsmodel. De residuen van het bekomen model gedragen zich ook al beter, ook hier lijken ze gemiddeld 0 te zijn met een bijna volledig constante afwijking. Als we naar de Q-Q-plot kijken van de residuen, zien we dat er nog wel redelijk sterk afwijkende staarten zijn, maar de residuen lijken nu wel de normale verdeling beter te volgen.  
+	Tot slot combineren we alles tot 'onsmodel'. Hier nemen we zowel van \textit{realSum} als van \textit{attr} de $log_{10}$-transformatie, de voorspellende kracht van dit model is ook het hoogst. De residuen van het bekomen model gedragen zich ook al beter, ook hier lijken ze gemiddeld 0 te zijn met een bijna volledig constante afwijking. Als we naar de Q-Q-plot kijken van de residuen, zien we dat er nog wel redelijk sterk afwijkende staarten zijn, maar de residuen lijken nu wel al iets beter de normale verdeling beter te volgen.  
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figuren/residuplotsonsmodel}
