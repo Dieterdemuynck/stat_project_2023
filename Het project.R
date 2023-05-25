@@ -240,6 +240,8 @@ as.numeric(diff(result_3$estimate))  # Verschil tussen gemiddelden
 ###normaliteit nagaan
 
 shapiro.test(realSum)
+?qqnorm
+qqnorm(realSum, main = "Normal Q-Q Plot of realSum");qqline(realSum)
 #realSum is duidelijk niet normaal verdeeld == > Spearman
 cor.test(realSum, dist, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
 cor.test(realSum, metro, method = c("spearman"), exact = FALSE) #waarschijnlijk afhankelijk
@@ -264,6 +266,7 @@ plot(bedrooms, realSum, xlab='Aantal beschikbare slaapkamers in het verblijf', y
 plot(room, realSum, xlab ='Soort verblijf', ylab='Totale prijs');abline(lm(realSum ~ room), col = "red")
 plot(host, realSum, xlab='Type verhuurder', ylab = 'Totale prijs');abline(lm(realSum ~ host), col = "red")
 summary(lm(realSum ~ host))
+
 #discretiseren van veranderlijken voor de Cochran regel
 som = cut(realSum, breaks = quantile(realSum, probs= seq(0,1,1/4)), labels = c("laag", "middel-laag", "middel-hoog", "hoog"))
 
@@ -299,6 +302,7 @@ plot(simpelmodel1)
 par(mfrow = c(1,1))
 summary(simpelmodel1)
 skewness(attr)
+skewness(realSum)
 
 simpelmodel2 = lm(log10(realSum)~log10(attr)); simpelmodel2
 par(mfrow = c(2,2))
@@ -351,7 +355,6 @@ logattrmodel = lm(realSum~satisfaction+log10(attr)+rest+metro+dist)
 summary(logattrmodel)
 logattrmodel = update(model ,.~. -metro)
 summary(logattrmodel)#Dit verbetert het model
-
 
 logmodel = lm(log10(realSum)~satisfaction+rest+attr+metro+dist)
 summary(logmodel)

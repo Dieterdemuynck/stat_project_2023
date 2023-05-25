@@ -211,23 +211,11 @@
 	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \textit{attr} in rekening gehouden wordt, bekomen we: 
     $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}). De adjusted $R^2$ zijn te zien in tabel \ref{rsq}.\\
 	Na het toepassen van achterwaartse regressie op ons naïef model, met alle continue variabelen, bekomen we het volgende model: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. Hierbij lieten we \textit{rest} en \textit{metro} weg, omdat deze insignificant zijn ($p_{rest}$ = 0.77 en $p_{metro}$ = 0.46). De bijhorende adjusted $R^2$ is, zoals te zien in tabel \ref{rsq}, tamelijk laag. De residuen zijn gemiddeld ongeveer 0 (zie figuur \ref{fig:residuplotsnaief}). We zien duidelijk dat de grootteorde van de afwijking ook niet constant is, zelfs in de grote puntenwolk zien we een stijgende lijn. Kijken we naar het Q-Q-plot van de residuen (\ref{fig:residuplotsnaief}), dan zien we al sterk afwijkende staarten en de fit lijkt systematisch te onderschatten, te overschatten en dan weer te onderschatten. De residuen lijken dus niet normaal verdeeld te zijn. \\
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\linewidth]{Figuren/residuplotsnaief}
-	\caption{Residuplots voor het naief model, ze wijzen sterk op een niet normale verdeling.}
-	\label{fig:residuplotsnaief}
-\end{figure}
 	
 	In "logattrmodel" proberen we eens \textit{attr} te vervangen door zijn $log_{10}$-getransformeerde. We zien geen significant verschil (te zien in de $R^2$-waarde) met het naieve model. Onze zoektocht naar een optimaal voorspellend model gaat verder. \\
 	Vanaf hier zullen alle modellen \textit{realSum} transformeren tot $log_{10}$(\textit{realSum}). Dit zal een merkbaar verschil maken in de voorspellende kracht van de modellen. Ten eerste worden alle continue veranderlijken gebruikt. \textit{metro} is een randgeval ( p = $0.0449$) in ons eerste "logmodel" en zal dus eens verwijderd worden in logmodel2. Dit verlaagt de adjusted $R^2$ en de kwaliteit van het model. \\
 	
 	Tot slot combineren we alles tot 'onsmodel'. Hier nemen we zowel van \textit{realSum} als van \textit{attr} de $log_{10}$-transformatie, de voorspellende kracht van dit model is ook het hoogst. De residuen van het bekomen model gedragen zich ook al beter, ook hier lijken ze gemiddeld 0 te zijn met een bijna volledig constante afwijking. Als we naar de Q-Q-plot kijken van de residuen, zien we dat er nog wel redelijk sterk afwijkende staarten zijn, maar de residuen lijken nu wel al iets beter de normale verdeling beter te volgen.  
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figuren/residuplotsonsmodel}
-	\caption{De residuplots voor 'onsmodel', de residuen volgen de normale verdeling al meer. Over het algemeen kunnen we wel nog niet besluiten dat deze normaal verdeeld zijn.}
-	\label{fig:residuplotsonsmodel}
-\end{figure}
 
 	\begin{table}[h]
 		\centering
@@ -264,7 +252,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics{Figuren/cleanliness_hist.pdf}
-		\caption{Histogram van de netheidsscore}
+		\caption{Histogram van de netheidsscore.}
 		\label{fig:cleanliness}
 	\end{figure}
 	
@@ -288,9 +276,7 @@
 
 	\subsection{Verklaren van de kost}
 	
-	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op onsmodel. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig: }.%hier moet nog een figuur
-	\\
-	Het uiteindelijke model heeft de volgende vorm:
+	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op onsmodel. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
 	\begin{equation}
 		log_{10}(\textit{realSum}) = 2.209482 + 0.046029\cdot \textit{satisfaction} + 0.402077\cdot log_{10}(\textit{attr}) -0.016323\cdot \textit{dist}
 	\end{equation} 
@@ -298,21 +284,21 @@
  
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{Figuren/naiefmodel}
-		\caption{Het naïeve model}
+		\includegraphics[width=0.9\linewidth]{Figuren/naiefmodel}
+		\caption{Residuplots voor het naïef model, ze wijzen sterk op een niet normale verdeling.}
 		\label{fig:naiefmodel}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{Figuren/onsmodel}
-		\caption{Het uiteindelijke model}
+		\includegraphics[width=0.9\linewidth]{Figuren/onsmodel}
+		\caption{De residuplots voor 'onsmodel', de residuen volgen de normale verdeling al meer. Over het algemeen kunnen we wel nog niet besluiten dat deze normaal verdeeld zijn.}
 		\label{fig:onsmodel}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{Figuren/betr.attr}
+		\includegraphics[width=0.9\linewidth]{Figuren/betr.attr}
 		\caption{Het onderscheid tussen \textit{attr} en $log_{10}$(\textit{attr}).}
 		\label{fig:betr}
 	\end{figure}
