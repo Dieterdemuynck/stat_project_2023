@@ -86,12 +86,12 @@
 	
 	\subsection{Gemiddelde kost}
 	
-	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen, namelijk of de netheid maximaal is of niet, de eigenaar een particuliere verhuurder is of niet en of al dan niet de volledig woning verhuurd wordt.
-	Aangezien de variantie bij alle onderzochte variabelen nooit gekend is, werd bij alle drie de vragen eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. We mogen deze test gebruiken aangezien voor elke variabele $n$ groot genoeg is (zie tabel \ref{tab:intermediary_results_gemiddelde_kost}). Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de vragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
+	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen, namelijk of de netheidsscore maximaal is of niet, de eigenaar een particuliere verhuurder is of niet, en of al dan niet de volledig woning verhuurd wordt.
+	Bij elke deelvraag werd eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. We mogen deze test gebruiken aangezien voor elke variabele het aantal groot genoeg is (zie tabel \ref{tab:intermediary_results_gemiddelde_kost}). Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de deelvragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
 
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Verder wordt de associatie tussen de kost van een verblijf en de andere gegevens onderzocht. Aangezien \verb|realSum| niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt de associatie tussen \verb|realSum| en de continue variabelen getest aan de hand van de Spearman-correlatietest. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt de variabele \verb|realSum| gediscretiseerd, door deze op te delen in zijn vier kwantielen. Ook de discrete en kwalitatieve variabele worden samengevoegd om aan de Cochranregel te voldoen. Enkel \verb|host| blijft onveranderd. De opdelingen zijn te vinden in tabel \ref{tab:grenzen}. \\\\
+	Verder wordt de associatie tussen de kost van een verblijf en de andere gegevens onderzocht. Aangezien de kost (\verb|realSum|) niet normaal verdeeld is (zie figuur \ref{fig:qqplotvrealsum}) en er zelden samenvallende waarden voorkomen, wordt de associatie tussen de kost en de continue variabelen getest aan de hand van de Spearman-correlatietest. Om de afhankelijkheid met de discrete en kwalitatieve variabelen te bepalen, wordt een $\chi ^2$-test gebruikt. Hiervoor wordt de variabele de kost gediscretiseerd, door deze op te delen in zijn vier kwantielen. Ook de discrete en kwalitatieve variabele worden samengevoegd om aan de Cochranregel te voldoen. Enkel de waarden voor de types verhuurders blijft onveranderd. De opdelingen zijn te vinden in tabel \ref{tab:grenzen}. \\\\
 	
 	\begin{figure}
 		\centering
@@ -116,9 +116,8 @@
 	\end{table}
 	\subsection{Verklaren van de kost}
 	
-	We zullen hier trachten \verb|realSum| te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \verb|attr|. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\verb|attr|) en $log_{10}$(\verb|realSum|), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \verb|attr| $=$ $2,454883$ ; skewness \verb|realSum| $=6.496029$.\\
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht. Dit doen we aan de hand van ingebouwde functies in R. 
-	
+	We zullen hier trachten de kost te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de attractiescore. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van de attractiescore en van de kost een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \verb|attr| $=2,454883$ ; skewness \verb|realSum| $=6.496029$.\\
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht. Dit doen we aan de hand van ingebouwde functies in R. % TODO: replace "dummy" and "room" with natural language
 	
 	\section{Resultaten}
 	
@@ -139,12 +138,12 @@
 			\hline
 			Kost voor 2 personen bij ...        & Aantal observaties & Gemiddelde prijs & Shapiro-Wilk-test p-waarde \\ \hline
 			\hline
-			Maximumscore netheid                & 376    & $457.1111$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
-			Niet maximumscore netheid           & 215    & $422.2669$ & $3.091 \cdot 10^{-12}$ \\ \hline
-			Gastheer verhuurt 1 woning          & 367    & $463.9553$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
-			Gastheer verhuurt meerdere woningen & 224    & $412.4534$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
-			Volledige woning wordt verhuurd     & 288    & $539.0370$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
-			Deel van de woning wordt verhuurd   & 303    & $354.5165$ & $< 2.2 \cdot 10^{-16}$ \\ \hline
+			Maximumscore netheid                & 376    & $457.1111$ & $< 3 \cdot 10^{-16}$ \\ \hline
+			Niet maximumscore netheid           & 215    & $422.2669$ & $ 3 \cdot 10^{-12}$ \\ \hline
+			Gastheer verhuurt 1 woning          & 367    & $463.9553$ & $< 3 \cdot 10^{-16}$ \\ \hline
+			Gastheer verhuurt meerdere woningen & 224    & $412.4534$ & $< 3 \cdot 10^{-16}$ \\ \hline
+			Volledige woning wordt verhuurd     & 288    & $539.0370$ & $< 3 \cdot 10^{-16}$ \\ \hline
+			Deel van de woning wordt verhuurd   & 303    & $354.5165$ & $< 3 \cdot 10^{-16}$ \\ \hline
 		\end{tabular}
 	\end{table}
 
