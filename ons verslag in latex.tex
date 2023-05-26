@@ -11,6 +11,7 @@
 	Jasper Denorme\\
 	Dieter Demunck}
 \usepackage{graphicx,flafter,framed,caption}
+\usepackage{cprotect}
 \usepackage{amsfonts,amssymb,amsmath,textcomp,eurosym,wasysym}
 \usepackage{listings}
 \usepackage{siunitx}
@@ -30,7 +31,7 @@
 	
 	Dit onderzoek focust op de totale kostprijs voor het huren van een Airbnb-verblijf in Amsterdam voor twee personen gedurende een weekend (vrijdag tot zondag). Er wordt nagegaan met welke factoren deze kostprijs samenhangt en in welke mate de kost daarmee kan worden voorspeld. Hierbij wordt er gebruik gemaakt van een aantal veranderlijken verzameld in het kader van een onderzoeksproject uitgevoerd door Kristóf Gyódi en Łukasz Nawaro. Het gaat enerzijds over kenmerken van het verblijf en tevredenheid van eerdere gasten volgens de gegevens van Airbnb, anderzijds over de ligging van het verblijf ten opzichte van het stadscentrum, bezienswaardigheden en restaurants, telkens rekening houdend met de populariteit, zoals gerapporteerd door TripAdvisor.\\
 	
-	Tabel \ref{beschrijving} beschrijft de variabelen en tabel \ref{uitreksel} geeft enkele basisstatistieken weer van de veranderlijken, die gebruikt worden in het onderzoek. \\\\
+	Tabel \ref{beschrijving} beschrijft de variabelen en tabellen \ref{uitreksel}, \ref{capacity tabel} en \ref{bedrooms tabel} geven enkele basisstatistieken weer van de veranderlijken, die gebruikt worden in het onderzoek. \\\\
 
 \begin{table}[h]
 	\centering
@@ -75,8 +76,36 @@
 	\end{tabular}
 	\caption{Basisstatistieken van de gebruikte veranderlijken.}
 	\label{uitreksel}
-	% TODO: Append tables for capacity and bedrooms
+	% TODO: Append tables for and bedrooms
 \end{table}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|c|r|}
+		\hline
+		Max. aantal gasten&2&3&4&5&6\\[0.5ex]
+		\hline
+		Aantal verblijven&591&60 &301  &10  &15 \\[0.5ex]
+		\hline
+	\end{tabular}
+	\cprotect\caption{Een samenvatting van \verb|capacity|.}
+	\label{capacity tabel}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|c|c|r|}
+		\hline
+		Aantal beschikbare slaapkamers&0&1&2&3&4&5\\[0.5ex]
+		\hline
+		Aantal verblijven&63 &636 &210   &57     &9     &2  \\[0.5ex]
+		\hline
+	\end{tabular}
+	\cprotect\caption{Een samenvatting van \verb|bedrooms|.}
+	\label{bedrooms tabel}
+\end{table}
+
+
 	
 	\section{Methode}
 	
@@ -117,8 +146,7 @@
 	\subsection{Verklaren van de kost}
 	
 	We zullen hier trachten de kost te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de attractiescore. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van de attractiescore en van de kost een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \verb|attr| $=2,454883$ ; skewness \verb|realSum| $=6.496029$.\\
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht. Dit doen we aan de hand van ingebouwde functies in R. % TODO: replace "dummy" and "room" with natural language
-	
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of het verhuren van de volledige woning of slechts een deel ervan een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht. Dit doen we aan de hand van ingebouwde functies in R.
 	\section{Resultaten}
 	
 	\subsection{Kenmerken van de steekproef}
@@ -167,7 +195,7 @@
 	
 	\subsection{Associatie met de verschillende veranderlijken}
 	
-	Uit tabel \ref{continue variabelen afhankelijkheid} halen we de p-waarde bij de afhankelijkheidstest voor elke continue variabele met \textit{realSum}, we zien dat deze allemaal zeer klein zijn. De bijhorende correlatie wordt geschat door rho.
+	Uit tabel \ref{continue variabelen afhankelijkheid} halen we de p-waarde bij de afhankelijkheidstest voor elke continue variabele met \verb|realSum|. We zien dat deze allemaal zeer klein zijn. De bijhorende correlatie wordt geschat door rho.
 	\begin{table}[h]
 		\centering
 		\begin{tabular}{c|c|c|c }
@@ -183,7 +211,7 @@
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
 	\end{table}
-	In tabel \ref{discrete variabelen afhankelijkheid} zien we dat de p-waardes voor onze $\chi^2$-test \textit{capacity}, \textit{bedrooms}, \textit{room} en \textit{host} zeer laag zijn terwijl deze voor \textit{cleanliness} eerder aan de hoge kant is. Het lijkt er op dat er geen of toch een zeer zwakke correlatie is tussen cleanliness en \textit{realSum}.
+	In tabel \ref{discrete variabelen afhankelijkheid} zien we dat de p-waardes van onze $\chi^2$-test voor \verb|capacity|, \verb|bedrooms|, \verb|room| en \verb|host| zeer laag zijn terwijl deze voor \verb|cleanliness| eerder aan de hoge kant is. Het lijkt erop dat er geen of toch alleszins geen sterke correlatie is tussen cleanliness en \verb|realSum|.
 	
 	\begin{table}[h]
 		\centering
