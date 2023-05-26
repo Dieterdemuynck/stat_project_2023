@@ -239,23 +239,9 @@
 	
 	Tot slot combineren we alles tot 'onsmodel'. Hier nemen we zowel van \textit{realSum} als van \textit{attr} de $log_{10}$-transformatie, de voorspellende kracht van dit model is ook het hoogst. De residuen van het bekomen model gedragen zich ook al beter, ook hier lijken ze gemiddeld 0 te zijn met een bijna volledig constante afwijking. Als we naar de Q-Q-plot kijken van de residuen, zien we dat er nog wel redelijk sterk afwijkende staarten zijn, maar de residuen lijken nu wel al iets beter de normale verdeling beter te volgen.  
 
-	\begin{table}[h]
-		\centering
-		\begin{tabular}{c|c|c}
-		\centering
-		naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
-		\hline
-		 simpelmodel1 & $0.071$ & \textit{realSum} $\sim$ \textit{attr}\\
-		 simpelmodel2 &$0.18$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
-		naïefmodel & $0.096$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
-		 logattrmodel &$0.096$ & \textit{realSum} $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{rest}$+$\textit{dist}\\
-		 logmodel &$0.19$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{metro}$+$\textit{dist}\\
-		 logmodel2 &$0.19$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
-		  onsmodel &$0.20$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
-		\end{tabular}
-		\caption{Alle gebruikte modellen met hun voorschrift.}
-		\label{rsq}
-	\end{table} % TODO: ALLEEN LAATSTE MODEL MOET BESPROKEN WORDEN!
+	
+	
+	
 	
 
 	
@@ -298,11 +284,13 @@
 
 	\subsection{Verklaren van de kost}
 	
-	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op onsmodel. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
+	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op 'onsmodel'. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
+	
 	\begin{equation}
-		log_{10}(\textit{realSum}) = 2.209482 + 0.046029\cdot \textit{satisfaction} + 0.402077\cdot log_{10}(\textit{attr}) -0.016323\cdot \textit{dist}
-	\end{equation} % TODO: Herschrijf per de normen in feedback 18-19
-
+		\verb*|realSum| = 161.9877 \cdot (1.111806)^{ \verb*|satisfaction|} \cdot  (\verb*|attr|)^{0.402077} \cdot (0.9631125)^{ \verb*|dist|}
+	\end{equation}% TODO beduidende cijfers nog
+	
+	We zijn tot dit model gekomen door de meest scheve veranderlijken normaler te maken met behulp van de log-transformatie. We hebben nog heel wat andere modellen geprobeerd, maar die hadden allen een lagere $R^2$ waarde. 
  
 	\begin{figure}
 		\centering
@@ -311,6 +299,27 @@
 		\label{fig:naiefmodel}
 	\end{figure}
 	
+	
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{c|c|c}
+			\centering
+			naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
+			\hline
+			simpelmodel1 & $0.071$ & \textit{realSum} $\sim$ \textit{attr}\\
+			simpelmodel2 &$0.18$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
+			naïefmodel & $0.096$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
+			onsmodel &$0.20$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
+		\end{tabular}
+		\caption{Enkele gebruikte modellen met hun voorschrift.}
+		\label{rsq}
+	\end{table} % TODO: ALLEEN LAATSTE MODEL MOET BESPROKEN WORDEN!
+
+
+
+
+
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{Figuren/onsmodel}
@@ -333,3 +342,4 @@
 	
 	
 \end{document} 
+
