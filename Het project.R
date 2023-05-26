@@ -296,6 +296,7 @@ chisq.test(p)
 
 
 #3.3.4 Verklaren van de opbrengsten
+#eerste model met alleen attractor
 simpelmodel1 = lm(realSum~attr); simpelmodel1
 par(mfrow = c(2,2))
 plot(simpelmodel1)
@@ -303,13 +304,14 @@ par(mfrow = c(1,1))
 summary(simpelmodel1)
 skewness(attr)
 skewness(realSum)
-
+#tweede model met alleen log(attractor)
 simpelmodel2 = lm(log10(realSum)~log10(attr)); simpelmodel2
 par(mfrow = c(2,2))
 plot(simpelmodel2)
 par(mfrow = c(1,1))
 summary(simpelmodel2)
 
+#figuren metbetrouwbaarheidsbanden opstellen
 y_hat = simpelmodel1$fitted.values
 x_i = simpelmodel1$model[ ,2]
 y_i = simpelmodel1$model[ ,1]
@@ -338,7 +340,7 @@ lines(sort(x_i2), predictie2[order(x_i2) ,2] , col = "green")
 lines(sort(x_i2), predictie2[order(x_i2) ,3] , col = "green")
 par(mfrow = c(1,1))
 
-
+#eerste naieve meervoudig regressiemodel
 naiefmodel = lm(realSum~satisfaction+rest+attr+metro+dist)
 summary(naiefmodel)
 naiefmodel = update(naiefmodel ,.~. -rest )
@@ -350,11 +352,12 @@ par(mfrow = c(2,2))
 plot(naiefmodel)
 par(mfrow = c(1,1))
 
-
+#testmodellen die niet zo goed zijn
 logattrmodel = lm(realSum~satisfaction+log10(attr)+rest+metro+dist)
 summary(logattrmodel)
 logattrmodel = update(model ,.~. -metro)
 summary(logattrmodel)#Dit verbetert het model
+
 
 logmodel = lm(log10(realSum)~satisfaction+rest+attr+metro+dist)
 summary(logmodel)
@@ -369,7 +372,7 @@ par(mfrow = c(2,2))
 plot(logmodel)
 par(mfrow = c(1,1))
 
-
+#beste meervoudig regressiemodel
 onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist+metro+rest)
 summary(onsmodel) 
 onsmodel = update(onsmodel ,.~. -rest)
@@ -381,7 +384,7 @@ par(mfrow = c(2,2))
 plot(onsmodel)
 par(mfrow = c(1,1))
 
-
+#beste meervoudig regressiemodel zonder outlier
 onsmodelzonderoutliers = lm(log10(realSum)~satisfaction+log10(attr)+dist, data = airbnb[-c(860),])
 summary(onsmodelzonderoutliers)
 
@@ -407,7 +410,7 @@ se_satisfaction = 10^coefficients[2] * std_errors[2]; se_satisfaction
 std_errors[3]  # standaardfout voor attr blijft gelijk
 se_distance = 10^coefficients[4] * std_errors[4]; se_distance
 
-
+##beste meervoudig regressiemodel met dummyvariabele
 is_woning = room == "volledige woning"
 table(is_woning)
 onsmodel = update(onsmodel, .~.*is_woning)
