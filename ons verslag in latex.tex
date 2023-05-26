@@ -185,11 +185,11 @@
 			\hline
 			
 			Maximumscore voor netheid of niet                 & $34.84423$
-			& $0.03848$              \\ \hline
+			& $0.04$              \\ \hline
 			Gastheer verhuurt 1 woning of meerdere       & $51.50189$
-			& $0.002512$             \\ \hline
+			& $0.003$             \\ \hline
 			Gastheer verhuurt volledige woning of deel   & $184.5205$
-			& $< 2.2 \cdot 10^{-16}$ \\ \hline
+			& $< 3 \cdot 10^{-16}$ \\ \hline
 		\end{tabular}
 	\end{table}
 	
@@ -202,11 +202,11 @@
 			naam & p-waarde & afhankelijkheid & rho\\
 			\hline
 			\hline
-			attr &$ < 2.2\cdot 10^{-16}$& ja&$0.4314979 $ \\
-			rest &$ < 2.2\cdot 10^{-16}$& ja&$0.4276987 $ \\
-			satisfaction &$ 1.657\cdot 10^{-7}$& ja&$0.1664983 $ \\
-			metro &$ 9.476\cdot 10^{-10}$& ja& $-0.1941159$ \\ 
-			dist & $< 2.2 \cdot 10^{-16} $&ja& $-0.4107378$ \\
+			attr & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
+			rest & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
+			satisfaction & $2 \cdot 10^{-7}$& ja& $0.2$ \\
+			metro & $9 \cdot 10^{-10}$& ja& $-0.2$ \\ 
+			dist & $< 3 \cdot 10^{-16}$&ja& $-0.4$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
@@ -219,11 +219,11 @@
 			naam & p-waarde & afhankelijkheid & $\chi ^2$\\
 			\hline
 			\hline
-			capacity &$ < 2.2\cdot 10^{-16}$& ja& $390.3$ \\ 
-			bedrooms &$ < 2.2\cdot 10^{-16}$& ja&$368.1 $ \\
-			room &$ < 2.2\cdot 10^{-16}$& ja&$ 337.29$ \\
-			host &$ 5.506\cdot 10^{-7}$& ja&$39.581 $ \\
-			cleanliness & $0.7775$&nee& $5.6174$ \\
+			capacity & $< 3 \cdot 10^{-16}$ & ja& $3.9 \cdot 10^{2}$ \\ 
+			bedrooms & $< 3 \cdot 10^{-16}$ & ja& $3.7  \cdot 10^{2}$ \\
+			room & $< 3 \cdot 10^{-16}$ & ja& $ 3.4 \cdot 10^{2}$ \\
+			host & $ 6 \cdot 10^{-7}$ & ja& $40$ \\
+			cleanliness & $0.8$ &nee& $5.6$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de discrete en kwalitatieve variabelen.}
 		\label{discrete variabelen afhankelijkheid}
@@ -246,17 +246,17 @@
 		\centering
 		naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
 		\hline
-		 simpelmodel1 & $0.07109$ & \textit{realSum} $\sim$ \textit{attr}\\
-		 simpelmodel2 &$0.1752$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
-		naïefmodel & $0.09559$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
-		 logattrmodel &$0.09559$ & \textit{realSum} $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{rest}$+$\textit{dist}\\
-		 logmodel &$0.1936$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{metro}$+$\textit{dist}\\
-		 logmodel2 &$0.1911$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
-		  onsmodel &$0.2006$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
+		 simpelmodel1 & $0.071$ & \textit{realSum} $\sim$ \textit{attr}\\
+		 simpelmodel2 &$0.18$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
+		naïefmodel & $0.096$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
+		 logattrmodel &$0.096$ & \textit{realSum} $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{rest}$+$\textit{dist}\\
+		 logmodel &$0.19$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{metro}$+$\textit{dist}\\
+		 logmodel2 &$0.19$ & $log_{10}$(\textit{realSum}) $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
+		  onsmodel &$0.20$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
 		\end{tabular}
 		\caption{Alle gebruikte modellen met hun voorschrift.}
 		\label{rsq}
-	\end{table}
+	\end{table} % TODO: ALLEEN LAATSTE MODEL MOET BESPROKEN WORDEN!
 	
 
 	
@@ -302,7 +302,7 @@
 	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op onsmodel. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
 	\begin{equation}
 		log_{10}(\textit{realSum}) = 2.209482 + 0.046029\cdot \textit{satisfaction} + 0.402077\cdot log_{10}(\textit{attr}) -0.016323\cdot \textit{dist}
-	\end{equation} 
+	\end{equation} % TODO: Herschrijf per de normen in feedback 18-19
 
  
 	\begin{figure}
