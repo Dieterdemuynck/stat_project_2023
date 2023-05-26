@@ -39,17 +39,17 @@
 		\raggedright
 		Naam & Beschrijving\\
 		\hline
-		realSum & Som van alle kosten voor 2 personen in euro\\ 
-		room & Soort verblijf (volledige woning, afzonderlijke kamer, gedeelde kamer) \\ 
-		capacity & Maximaal aantal gasten \\
-		bedrooms & Aantal beschikbare slaapkamers in het verblijf \\
-		dist & Afstand tot het stadscentrum (km) \\
-		metro & Afstand tot dichtstbijzijnde metro-halte (km)\\
-		attr & Attractiescore, nabijheid van bezienswaardigheden (op 10)\\
-		rest & Restaurantscore, nabijheid van restaurants (op 10)\\ 
-		host & Type verhuurder (enige beschikbare woning, 2 tot 4 beschikbare woningen, meer dan 4 beschikbare woningen) \\ 
-		cleanliness & Modale score voor netheid van het verblijf volgens gasten (op 10) \\
-		satisfaction & Tevredenheid van de gasten (op 10)\\
+		\verb*|realSum| & Som van alle kosten voor 2 personen in euro\\ [0.5ex]
+		\verb*|room| & Soort verblijf (volledige woning, afzonderlijke kamer, gedeelde kamer) \\ [0.5ex]
+		\verb*|capacity| & Maximaal aantal gasten \\[0.5ex]
+	\verb*|bedrooms|& Aantal beschikbare slaapkamers in het verblijf \\[0.5ex]
+		\verb*|dist| & Afstand tot het stadscentrum (km) \\[0.5ex]
+		\verb*|metro| & Afstand tot dichtstbijzijnde metro-halte (km)\\[0.5ex]
+		\verb*|attr| & Attractiescore, nabijheid van bezienswaardigheden (op 10)\\[0.5ex]
+		\verb*|rest| & Restaurantscore, nabijheid van restaurants (op 10)\\ [0.5ex]
+		\verb*|host| & Type verhuurder (enige beschikbare woning, 2 tot 4 beschikbare woningen, meer dan 4 beschikbare woningen) \\ [0.5ex]
+		\verb*|cleanliness| & Modale score voor netheid van het verblijf volgens gasten (op 10) \\[0.5ex]
+		\verb*|satisfaction| & Tevredenheid van de gasten (op 10)\\[0.5ex]
 		
 	\end{tabular}
 	\caption{Beschrijving van de gebruikte veranderlijken.}
@@ -100,7 +100,7 @@
 		Aantal verblijven&63 &636 &210   &57     &9     &2  \\[0.5ex]
 		\hline
 	\end{tabular}
-	\caption{Aantal verblijven per het aantal slaapkamers.}
+	\caption{Aantal verblijven per aantal slaapkamers.}
 	\label{bedrooms tabel}
 \end{table}
 
@@ -134,10 +134,10 @@
 			\centering
 			naam& opdelende grenzen\\
 			\hline
-			\textbf{cleanliness} & $ 0 $ - $ 7.5 $ - $ 8.5$ - $ 9.5 $ - $ 10.5$ \\
-			\textbf{capacity}& $-0.5$ - $2.5$ - $3.5$ - $4.5$ - $6.5$\\
-			\textbf{bedrooms}& $-0.5$ - $0.5$ - $1.5$ - $2.5$ - $6$\\
-			\textbf{room} & $0.5$ - $1.5$ - $3.5$\\
+			\verb*|cleanliness| & $ 0 $ - $ 7.5 $ - $ 8.5$ - $ 9.5 $ - $ 10.5$ \\
+			\verb*|capacity|& $-0.5$ - $2.5$ - $3.5$ - $4.5$ - $6.5$\\
+			\verb*|bedrooms|& $-0.5$ - $0.5$ - $1.5$ - $2.5$ - $6$\\
+			\verb*|room| & $0.5$ - $1.5$ - $3.5$\\
 			\end{tabular}
 			\caption{De grenzen, die de gegevens opdelen zodat aan de Cochran-regel voldaan is.}
 			\label{tab:grenzen}
@@ -201,16 +201,16 @@
 			naam & p-waarde & afhankelijkheid & $\rho$\\
 			\hline
 			\hline
-			attr & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
-			rest & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
-			satisfaction & $2 \cdot 10^{-7}$& ja& $0.2$ \\
-			metro & $9 \cdot 10^{-10}$& ja& $-0.2$ \\ 
-			dist & $< 3 \cdot 10^{-16}$&ja& $-0.4$ \\
+		\verb*|attr| & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
+		\verb*|rest| & $< 3 \cdot 10^{-16}$& ja& $0.4$ \\
+			\verb*|satisfaction| & $2 \cdot 10^{-7}$& ja& $0.2$ \\
+			\verb*|metro| & $9 \cdot 10^{-10}$& ja& $-0.2$ \\ 
+			\verb*|dist| & $< 3 \cdot 10^{-16}$&ja& $-0.4$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de continue variabelen.}
 		\label{continue variabelen afhankelijkheid}
 	\end{table}
-	In tabel \ref{discrete variabelen afhankelijkheid} zien we dat de p-waardes van onze $\chi^2$-test voor \verb|capacity|, \verb|bedrooms|, \verb|room| en \verb|host| zeer laag zijn terwijl deze voor \verb|cleanliness| eerder aan de hoge kant is. Het lijkt erop dat er geen of toch alleszins geen sterke correlatie is tussen cleanliness en \verb|realSum|.
+	In tabel \ref{discrete variabelen afhankelijkheid} zien we dat de p-waardes van onze $\chi^2$-test voor \verb|capacity|, \verb|bedrooms|, \verb|room| en \verb|host| zeer laag zijn terwijl deze voor \verb|cleanliness| eerder aan de hoge kant is. Het lijkt erop dat er geen of toch alleszins geen sterke correlatie is tussen \verb*|cleanliness| en \verb|realSum|.
 	
 	\begin{table}[h]
 		\centering
@@ -218,11 +218,11 @@
 			naam & p-waarde & afhankelijkheid & $\chi ^2$\\
 			\hline
 			\hline
-			capacity & $< 3 \cdot 10^{-16}$ & ja& $3.9 \cdot 10^{2}$ \\ 
-			bedrooms & $< 3 \cdot 10^{-16}$ & ja& $3.7  \cdot 10^{2}$ \\
-			room & $< 3 \cdot 10^{-16}$ & ja& $ 3.4 \cdot 10^{2}$ \\
-			host & $ 6 \cdot 10^{-7}$ & ja& $40$ \\
-			cleanliness & $0.8$ &nee& $5.6$ \\
+			\verb*|capacity| & $< 3 \cdot 10^{-16}$ & ja& $3.9 \cdot 10^{2}$ \\ 
+			\verb*|bedrooms| & $< 3 \cdot 10^{-16}$ & ja& $3.7  \cdot 10^{2}$ \\
+			\verb*|room| & $< 3 \cdot 10^{-16}$ & ja& $ 3.4 \cdot 10^{2}$ \\
+			\verb*|host| & $ 6 \cdot 10^{-7}$ & ja& $40$ \\
+			\verb*|cleanliness| & $0.8$ &nee& $5.6$ \\
 		\end{tabular}
 		\caption{Afhankelijkheid van de prijs met de discrete en kwalitatieve variabelen.}
 		\label{discrete variabelen afhankelijkheid}
@@ -230,10 +230,10 @@
 	
 	\subsection{Verklaren van de kost}
 	
-	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \textit{attr} in rekening gehouden wordt, bekomen we: 
-    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \textit{realSum} en $x$ de variabele \textit{attr}. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \textit{attr} vervangen door $log_{10}$(\textit{attr}) en \textit{realSum} door $log_{10}$(\textit{realSum}). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\textit{realSum}) en $x = log_{10}$(\textit{attr}). De adjusted $R^2$ zijn te zien in tabel \ref{rsq}.\\
+	Bij het uitvoeren van het eerste regressiemodel, waarbij enkel \verb*|attr| in rekening gehouden wordt, bekomen we: 
+    $ y = 338.93 + 126.58\cdot x$. Hier is $y$ de variabele \verb*|realSum| en $x$ de variabele \verb*|attr|. Laten we dit model de naam 'simpelmodel1' geven. Vervolgens wordt \verb*|attr| vervangen door $log_{10}$(\verb*|attr|) en \verb*|realSum| door $log_{10}$(\verb*|realSum|). Dit model noemen we 'simpelmodel2'. De bekomen vergelijking is dan: $ y = 2.55138 + 0.56912\cdot x$. Hier is $y = log_{10}$(\verb*|realSum|) en $x = log_{10}$(\verb*|realSum|). De adjusted $R^2$ zijn te zien in tabel \ref{rsq}.\\
     
-	Na het toepassen van achterwaartse regressie op ons naïef model, met alle continue variabelen, bekomen we het volgende model: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\textit{realsum}, $x_1 = $ \textit{satisfaction}, $x_2 =$ \textit{attr} en $x_3 =$ \textit{dist}. Hierbij lieten we \textit{rest} en \textit{metro} weg, omdat deze insignificant zijn ($p_{rest}$ = 0.77 en $p_{metro}$ = 0.46). De bijhorende adjusted $R^2$ is, zoals te zien in tabel \ref{rsq}, tamelijk laag. De residuen zijn gemiddeld ongeveer 0 (zie figuur \ref{fig:naiefmodel}). We zien duidelijk dat de grootteorde van de afwijking ook niet constant is, zelfs in de grote puntenwolk zien we een stijgende lijn. Kijken we naar het Q-Q-plot van de residuen (\ref{fig:naiefmodel}), dan zien we al sterk afwijkende staarten en de fit lijkt systematisch te onderschatten, te overschatten en dan weer te onderschatten. De residuen lijken dus niet normaal verdeeld te zijn. \\
+	Na het toepassen van achterwaartse regressie op ons naïef model, met alle continue variabelen, bekomen we het volgende model: $y = -190.900 + 75.886\cdot x_1 + 79.480\cdot x_2 -31.985\cdot x_3$. Hier is $y =$\verb*|realSum|, $x_1 = $ \verb*|satisfaction|, $x_2 =$ \verb*|attr| en $x_3 =$ \verb*|dist|. Hierbij lieten we \verb*|rest| en \verb*|metro| weg, omdat deze insignificant zijn ($p_{rest}$ = 0.77 en $p_{metro}$ = 0.46). De bijhorende adjusted $R^2$ is, zoals te zien in tabel \ref{rsq}, tamelijk laag. De residuen zijn gemiddeld ongeveer 0 (zie figuur \ref{fig:naiefmodel}). We zien duidelijk dat de grootteorde van de afwijking ook niet constant is, zelfs in de grote puntenwolk zien we een stijgende lijn. Kijken we naar het Q-Q-plot van de residuen (\ref{fig:naiefmodel}), dan zien we al sterk afwijkende staarten en de fit lijkt systematisch te onderschatten, te overschatten en dan weer te onderschatten. De residuen lijken dus niet normaal verdeeld te zijn. \\
 	
 	Tot slot combineren we alles tot 'onsmodel'. Hier nemen we zowel van  \verb*|realSum| als van  \verb*|attr| de $log_{10}$-transformatie, de voorspellende kracht van dit model is ook het hoogst. De residuen van het bekomen model gedragen zich ook al beter, ook hier lijken ze gemiddeld 0 te zijn met een bijna volledig constante afwijking. Als we naar de Q-Q-plot kijken van de residuen, zien we dat er nog wel redelijk sterk afwijkende staarten zijn, maar de residuen lijken nu wel al iets beter de normale verdeling beter te volgen.  
 	
@@ -267,7 +267,7 @@
 		\includegraphics[width=0.49\linewidth]{Figuren/correlatievanbedrooms}
 		\includegraphics[width=0.49\linewidth]{Figuren/correlatievancapacity}
 		
-		\caption{Scatterplots voor \textit{realSum} in functie van de meest significante veranderlijken.}
+		\cprotect\caption{Scatterplots voor \verb*|realSum| in functie van de meest significante veranderlijken.}
 		\label{fig:correlatievanattr}
 	\end{figure}
 
@@ -276,7 +276,7 @@
 
 	\subsection{Verklaren van de kost}
 	
-	In onze zoektocht naar het optimale model, die \textit{realSum} kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op 'onsmodel'. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
+	In onze zoektocht naar het optimale model, die \verb*|realSum| kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op 'onsmodel'. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
 	
 	\begin{equation}
 		\verb*|realSum| = 161.9877 \cdot (1.111806)^{ \verb*|satisfaction|} \cdot  (\verb*|attr|)^{0.402077} \cdot (0.9631125)^{ \verb*|dist|}
@@ -299,10 +299,10 @@
 			\centering
 			naam van het model & adjusted $R^2$ & voorschrift van het lineair model \\
 			\hline
-			simpelmodel1 & $0.071$ & \textit{realSum} $\sim$ \textit{attr}\\
-			simpelmodel2 &$0.18$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr}) \\
-			naïefmodel & $0.096$& \textit{realSum} $\sim$ \textit{attr}$+$\textit{satisfaction}$+$\textit{dist}\\
-			onsmodel &$0.20$ & $log_{10}$(\textit{realSum}) $\sim$ $log_{10}$(\textit{attr})$+$\textit{satisfaction}$+$\textit{dist}\\
+			simpelmodel1 & $0.071$ & \verb*|realSum| $\sim$ \verb*|attr|\\
+			simpelmodel2 &$0.18$ & $log_{10}$(\verb*|realSum|) $\sim$ $log_{10}$(\verb*|attr|) \\
+			naïefmodel & $0.096$& \verb*|realSum| $\sim$ \verb*|attr|$+$\verb*|satisfaction|$+$\verb*|dist|\\
+			onsmodel &$0.20$ & $log_{10}$(\verb*|realSum|) $\sim$ $log_{10}$(\verb*|attr|)$+$\verb*|satisfaction|$+$\verb*|dist|\\
 		\end{tabular}
 		\caption{Enkele gebruikte modellen met hun voorschrift.}
 		\label{rsq}
@@ -323,7 +323,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{Figuren/betr.attr}
-		\caption{Het onderscheid tussen \textit{attr} en $log_{10}$(\textit{attr}).}
+		\cprotect\caption{Het onderscheid tussen \verb*|attr| en $log_{10}$(\verb*|attr|).}
 		\label{fig:betr}
 	\end{figure}
 
