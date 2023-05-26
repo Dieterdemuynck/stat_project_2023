@@ -117,13 +117,14 @@
 	\subsection{Verklaren van de kost}
 	
 	We zullen hier trachten \verb|realSum| te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \verb|attr|. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\verb|attr|) en $log_{10}$(\verb|realSum|), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \verb|attr| $=$ $2,454883$ ; skewness \verb|realSum| $=6.496029$.\\
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht, dit doen we aan de hand van ingebouwde functies in R. 
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht. Dit doen we aan de hand van ingebouwde functies in R. 
 	
 	
 	\section{Resultaten}
 	
 	\subsection{Kenmerken van de steekproef}
-	De gemiddelde kost in de steekproef is 604 euro, terwijl deze in 2019 620 euro was. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We komen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. We bekomen een verschil van 295. Bij de $\chi$-kwadraat test voor onze verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, een zeer lage p-waarde voor de verdeling. We zullen de hypothese dus verwerpen.
+	De gemiddelde kost in de steekproef is 604 euro, terwijl deze  620 euro was in 2019. Het verschil van 16 euro is niet significant ($t_{976}$ = -1.1, p = 0.29). We komen uit dat $p \approx 0$ voor onze test op het aandeel van particuliere vs. professionele verhuurders. Dit is logisch, omdat ten opzichte van het totale aantal: $977$ het absolute verschil $295$ is.\\\\
+	Bij de $\chi$-kwadraat test voor onze Poisson-verdeling bekomen we $\chi^2 = 424.77$ en $p \approx 0$, een zeer lage p-waarde. Deze twee zeer lage p-waarden wijzen op een aan zekerheid grenzende waarschijnlijkheid dat er een significant verschil is tussen zowel de verschillende soorten verhuurders, als tussen de theoretische Poisson-verdeling en de steekproef.
 	
 	\subsection{Gemiddelde kost}
 	 Uit de resultaten van de Shapiro-Wilk-testen, te zien in tabel \ref{tab:intermediary_results_gemiddelde_kost}, volgt ook dat we met aan zekerheid grenzende waarschijnlijkheid kunnen veronderstellen dat geen enkele categorie normaal verdeeld is.
