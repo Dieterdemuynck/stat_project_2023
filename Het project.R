@@ -414,3 +414,4 @@ onsmodel = update(onsmodel, .~.*is_woning)
 summary(onsmodel)
 onsmodel = update(onsmodel, .~.-satisfaction:is_woning)
 summary(onsmodel)#dit model is goed
+
