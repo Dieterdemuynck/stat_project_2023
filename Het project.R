@@ -393,11 +393,25 @@ par(mfrow = c(1,1))#outlier heeft weinig effect, we hoeven hem dus niet uit de d
 
 onsmodel = lm(log10(realSum)~satisfaction+log10(attr)+dist)
 summary(onsmodel)
+coefficients = summary(onsmodel)$coefficients[1:4]; coefficients
+std_errors = summary(onsmodel)$coefficients[5:8]; std_errors
 
-dommy = room == "volledige woning"
-table(dommy)
-onsmodel = update(onsmodel, .~.*dommy)
+# Coefficienten
+adj_intercept = 10^coefficients[1]; adj_intercept
+adj_satisfaction = 10^coefficients[2]; adj_satisfaction
+coefficients[3]  # coefficient voor attr blijft gelijk
+adj_distance = 10^coefficients[4]; adj_distance
+
+# Standaardfouten
+se_intercept = 10^coefficients[1] * std_errors[1]; se_intercept
+se_satisfaction = 10^coefficients[2] * std_errors[2]; se_satisfaction
+std_errors[3]  # standaardfout voor attr blijft gelijk
+se_distance = 10^coefficients[4] * std_errors[4]; se_distance
+
+
+is_woning = room == "volledige woning"
+table(is_woning)
+onsmodel = update(onsmodel, .~.*is_woning)
 summary(onsmodel)
-onsmodel = update(onsmodel, .~.-satisfaction:dommy)
+onsmodel = update(onsmodel, .~.-satisfaction:is_woning)
 summary(onsmodel)#dit model is goed
-

@@ -281,10 +281,10 @@
 	In onze zoektocht naar het optimale model, die \verb*|realSum| kan voorspellen aan de hand van de andere veranderlijken in de dataset, zijn we terechtgekomen op 'onsmodel'. Met een adjusted $R^2$ van $20.06$ procent geeft dit een tamelijk slechte voorspelling van de totale prijs, maar het is al veel beter dan alle vorige modellen. De verbetering is te zien op figuur \ref{fig:naiefmodel} en \ref{fig:onsmodel}. Het uiteindelijke model heeft de volgende vorm:
 	
 	\begin{equation}
-		\verb*|realSum| = 161.9877 \cdot (1.111806)^{ \verb*|satisfaction|} \cdot  (\verb*|attr|)^{0.402077} \cdot (0.9631125)^{ \verb*|dist|}
-	\end{equation}% TODO beduidende cijfers nog
+		\verb*|realSum| = (1.6 \cdot 10^{2}) \cdot (1.11)^{ \verb*|satisfaction|} \cdot  (\verb*|attr|)^{0.40} \cdot (0.963)^{ \verb*|dist|}
+	\end{equation}
 	
-	We zijn tot dit model gekomen door de meest scheve veranderlijken normaler te maken met behulp van de $log_{10}$-transformatie. We hebben nog heel wat andere modellen geprobeerd, maar die hadden allen een lagere $R^2$ waarde. 
+	We zijn tot dit model gekomen door de meest scheve veranderlijken normaler te maken met behulp van de $log_{10}$-transformatie. Een aantal andere modellen werden getest, maar deze hadden allen een lagere $R^2$ waarde. 
  
 	\begin{figure}
 		\centering
