@@ -59,24 +59,23 @@
 	\centering
 	\begin{tabular}{| l| l| l|  p{5cm} |}
 		\hline
-		Naam & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [1ex]
+		Type waarde & Gemiddelde $\pm$ standaardfout  & Bereik & Algemene vorm\\  [1ex]
 		\hline\hline
-		realSum & €$(6 \pm 4) \cdot 10^{2} $ & $[165.9129, 8130.6681]$  &  zeer rechtsscheef\\    [0.5ex]
+		Kost & €$(6 \pm 4) \cdot 10^{2} $ & $[165.9129, 8130.6681]$  &  zeer rechtsscheef\\    [0.5ex]
 		\hline
-		dist & $3 \pm 2$ km  & $[0.01504452, 11.19593222]$ & zeer rechtsscheef \\  [0.5ex]
+		Stadscentrumafstand & $3 \pm 2$ km  & $[0.01504452, 11.19593222]$ & zeer rechtsscheef \\  [0.5ex]
 		\hline
-		metro & $1.1 \pm 0.8$ km & $[0.03651741, 4.41190504]$ & zeer rechtsscheef \\ [0.5ex]
+		Metroafstand & $1.1 \pm 0.8$ km & $[0.03651741, 4.41190504]$ & zeer rechtsscheef \\ [0.5ex]
 		\hline
-		attr & $2.1 \pm 0.9$ & $[1, 10]$  & rechtsscheef \\  [0.5ex]
+		Attractiescore & $2.1 \pm 0.9$ & $[1, 10]$  & rechtsscheef \\  [0.5ex]
 		\hline
-		rest & $3 \pm 2$ & $[1, 10]$ & benaderend lognormaal met zware staarten \\ [0.5ex]
+		Restaurantscore & $3 \pm 2$ & $[1, 10]$ & benaderend lognormaal met zware staarten \\ [0.5ex]
 		\hline
-		cleanliness & $9.5 \pm 0.8$ & $[2, 10]$ & benaderend exponentieel  \\ [0.5ex]
+		Netheidsscore & $9.5 \pm 0.8$ & $[2, 10]$ & benaderend exponentieel  \\ [0.5ex]
 		\hline
 	\end{tabular}
 	\caption{Basisstatistieken van de gebruikte veranderlijken.}
 	\label{uitreksel}
-	% TODO: Append tables for and bedrooms
 \end{table}
 
 \begin{table}[h]
@@ -88,7 +87,7 @@
 		Aantal verblijven&591&60 &301  &10  &15 \\[0.5ex]
 		\hline
 	\end{tabular}
-	\cprotect\caption{Een samenvatting van \verb|capacity|.}
+	\caption{Aantal verblijven per maximaal aantal gasten.}
 	\label{capacity tabel}
 \end{table}
 
@@ -101,7 +100,7 @@
 		Aantal verblijven&63 &636 &210   &57     &9     &2  \\[0.5ex]
 		\hline
 	\end{tabular}
-	\cprotect\caption{Een samenvatting van \verb|bedrooms|.}
+	\caption{Aantal verblijven per het aantal slaapkamers.}
 	\label{bedrooms tabel}
 \end{table}
 
