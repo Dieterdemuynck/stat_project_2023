@@ -30,7 +30,7 @@
 	
 	Dit onderzoek focust op de totale kostprijs voor het huren van een Airbnb-verblijf in Amsterdam voor twee personen gedurende een weekend (vrijdag tot zondag). Er wordt nagegaan met welke factoren deze kostprijs samenhangt en in welke mate de kost daarmee kan worden voorspeld. Hierbij wordt er gebruik gemaakt van een aantal veranderlijken verzameld in het kader van een onderzoeksproject uitgevoerd door Kristóf Gyódi en Łukasz Nawaro. Het gaat enerzijds over kenmerken van het verblijf en tevredenheid van eerdere gasten volgens de gegevens van Airbnb, anderzijds over de ligging van het verblijf ten opzichte van het stadscentrum, bezienswaardigheden en restaurants, telkens rekening houdend met de populariteit, zoals gerapporteerd door TripAdvisor.\\
 	
-	Tabel \ref{beschrijving} beschrijft de variabelen en tabel \ref{uitreksel} geeft enkele basisstatistieken weer van de veranderlijken die gebruikt worden in het onderzoek. \\\\
+	Tabel \ref{beschrijving} beschrijft de variabelen en tabel \ref{uitreksel} geeft enkele basisstatistieken weer van de veranderlijken, die gebruikt worden in het onderzoek. \\\\
 
 \begin{table}[h]
 	\centering
@@ -86,7 +86,7 @@
 	
 	\subsection{Gemiddelde kost}
 	
-	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen, namelijk als de netheid maximaal is of niet, de eigenaar een particuliere verhuurder is of niet en of de volledig woning verhuurd wordt.
+	Hier zal onderzocht worden of de totale prijs van een verblijf voor twee personen afhankelijk is van bepaalde andere variabelen, namelijk of de netheid maximaal is of niet, de eigenaar een particuliere verhuurder is of niet en of al dan niet de volledig woning verhuurd wordt.
 	Aangezien de variantie bij alle onderzochte variabelen nooit gekend is, werd bij alle drie de vragen eerst de normaliteit van de twee categorieën getest, aan de hand van de Shapiro-Wilk-test. We mogen deze test gebruiken aangezien voor elke variabele $n$ groot genoeg is (zie tabel \ref{tab:intermediary_results_gemiddelde_kost}). Hierna wordt een Student t-test voor twee gemiddelden bij verschillende varianties uitgevoerd, dit ook voor alle drie de vragen. Deze laatste test mag uitgevoerd worden, omdat de centrale limietstelling (CLS) voldaan is.
 
 	\subsection{Associatie met de verschillende veranderlijken}
@@ -111,13 +111,13 @@
 			\textbf{bedrooms}& $-0.5$ - $0.5$ - $1.5$ - $2.5$ - $6$\\
 			\textbf{room} & $0.5$ - $1.5$ - $3.5$\\
 			\end{tabular}
-			\caption{De grenzen, die de gegevens opdelen zodat de aan Cochran-regel voldaan is.}
+			\caption{De grenzen, die de gegevens opdelen zodat aan de Cochran-regel voldaan is.}
 			\label{tab:grenzen}
 	\end{table}
 	\subsection{Verklaren van de kost}
 	
-	We zullen hier trachten \textit{realSum} te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \textit{attr}. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\textit{attr}) en $log_{10}$(\textit{realSum}), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \textit{attr} $=$ $2,454883$ ; skewness \textit{realSum} $=6.496029$.\\
-	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \textit{dummy}, \textit{room} == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht, dit doen we aan de hand van ingebouwde functies in R. 
+	We zullen hier trachten \verb|realSum| te verklaren aan de hand van de andere veranderlijken. Dit gebeurt met een lineair regressiemodel. Eerst wordt het model gemaakt enkel op basis van de variabele \verb|attr|. Er wordt ook bestudeerd of een model gebaseerd op de $log_{10}$-transformatie van deze veranderlijken, $log_{10}$(\verb|attr|) en $log_{10}$(\verb|realSum|), een beter resultaat geeft, aangezien deze variabelen allebei rechtsscheef verdeeld zijn: skewness \verb|attr| $=$ $2,454883$ ; skewness \verb|realSum| $=6.496029$.\\
+	Daarna wordt er via achterwaartse regressie een meervoudig regressiemodel gezocht, waar we alle continue variabelen voor gebruiken en ook gebruik maken van  $log_{10}$-transformaties. Ten slotte wordt nog bestudeerd of de binaire variabele \verb|dummy|, \verb|room| == volledige woning, een significante invloed heeft op het model. Voor alle modellen wordt de kwaliteit ook onderzocht, dit doen we aan de hand van ingebouwde functies in R. 
 	
 	
 	\section{Resultaten}
