@@ -74,7 +74,7 @@ cov(realSum, dist)  # sterk omgekeerd evenredig verband; (kleine afstand = hoge 
 hist(metro) # rechtsscheef met meeste gegevens links (kleine afstand)
 hist(log10(metro)) # lijkt een beetje normaal, maar heeft toch een kleine linkerstaart
 summary(metro)
-range(metro)     
+range(metro)
 range(metro)[2]-range(metro)[1] # minder spreiding dan dist
 cov(realSum, metro) # een kleinere afstand zal een hogere prijs met zich meetrekken, maar minder erg dan bij dist
 
@@ -113,6 +113,7 @@ pie(table(host), main = "Aantal beschikbare woningen van de gastheer\nbij een wo
 # Exponentieel verdeeld?
 table(cleanliness)
 hist(cleanliness, col = c("snow2", "snow3"))
+range(cleanliness)
 
 # 11: satistfaction
 # Kwantitatief, continu (tussen 1 en 10)
